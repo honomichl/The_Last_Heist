@@ -1,0 +1,3 @@
+public class CommandPrikazy extends Command {
+    public String execute(String[] args) {}
+}
