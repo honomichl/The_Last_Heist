@@ -1,5 +1,7 @@
 package Commands;
 
 public class CommandKonec extends Command {
-    public String execute(String[] args) {}
+    public String execute(String[] args) {
+        return "";
+    }
 }

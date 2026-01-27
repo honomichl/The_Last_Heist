@@ -1,3 +1,6 @@
 public class OldGuard extends Enemy {
-    public String interact() {}
+    @Override
+    public String interact() {
+        return "";
+    }
 }

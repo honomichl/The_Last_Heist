@@ -1,3 +1,4 @@
 public class Guard extends Enemy {
-    public String interact() {}
+    @Override
+    public String interact() { return ""; }
 }

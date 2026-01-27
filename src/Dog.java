@@ -1,3 +1,6 @@
 public class Dog extends Enemy {
-    public String interact() {}
+    @Override
+    public String interact() {
+        return "";
+    }
 }

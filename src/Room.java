@@ -1,20 +1,35 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Room {
     private String name;
     private String description;
-    private List<Item> items;
-    private List<Enemy> enemies;
-    private Map<String, Room> exits;
+    private List<Item> items = new ArrayList<>();
+    private List<Enemy> enemies = new ArrayList<>();
+    private Map<String, Room> exits = new HashMap<>();
 
+    public String getName() {
+        return "";
+    }
 
+    public String getDescription() {
+        return "";
+    }
 
-    public String getName() {}
-    public String getDescription() {}
+    public String getLongDescription() {
+        return "";
+    }
+
+    public void setExit(String direction, Room neighbor) {
+    }
+
+    public Room getExit(String direction) {
+        return null;
+    }
+
     public void addItem(Item item) {}
-    public void removeItem(Item item) {}
+
     public void addEnemy(Enemy enemy) {}
-    public void removeEnemy(Enemy enemy) {}
-    public Room getExit(String roomName) {}
-    public void setExit(Room neighbor) {}
-    public String getExitNames() {}
-    public Enemy getNPC(String name) {}
 }

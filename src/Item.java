@@ -1,5 +1,9 @@
 public class Item {
-    public String getName() {}
-    public String getDescription() {}
-    public int getSize() {}
+    private String name;
+    private String description;
+    private int size;
+
+    public String getName() { return ""; }
+    public String getDescription() { return ""; }
+    public int getSize() { return 0; }
 }
