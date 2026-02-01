@@ -1,3 +1,5 @@
+package Game;
+
 public class Hacker {
     private String name;
     private String description;

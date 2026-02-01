@@ -1,6 +1,6 @@
-package Commands;
+package Command;
 
-public class CommandSeber extends Command {
+public class CommandHackni extends Command {
     public String execute(String[] args) {
         return "";
     }

@@ -1,6 +1,6 @@
-package Commands;
+package Command;
 
-public class CommandInventar extends Command {
+public class CommandOdpovez extends Command {
     public String execute(String[] args) {
         return "";
     }

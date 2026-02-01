@@ -1,6 +1,6 @@
-package Commands;
+package Command;
 
-public class CommandNapoveda extends Command {
+public class CommandSeber extends Command {
     public String execute(String[] args) {
         return "";
     }

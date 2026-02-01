@@ -1,6 +1,6 @@
-package Commands;
+package Command;
 
-public class CommandKonec extends Command {
+public class CommandMluv extends Command {
     public String execute(String[] args) {
         return "";
     }

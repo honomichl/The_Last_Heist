@@ -1,3 +1,5 @@
+package Game;
+
 public class NoiseMeter {
     private int noiseLevel;
     private int MAX_NOISE = 100;

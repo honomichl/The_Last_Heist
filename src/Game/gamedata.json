@@ -1,0 +1,81 @@
+{
+  "rooms": [
+    {
+      "name": "zahrada",
+      "description": "Vstupní bod při infiltraci autem. Nacházejí se zde uvázaní psi. Slouží také jako místo pro únik.",
+      "items": [],
+      "enemies": ["psi"],
+      "exits": ["predsin", "jidelna"]
+    },
+    {
+      "name": "balkon",
+      "description": "Místo pro infiltraci padákem. Také slouží jako místo pro únik helikoptérou, ale hluk z helikoptéry je slyšet i až do předsíně.",
+      "items": [],
+      "enemies": [],
+      "exits": ["obyvaciPokoj"]
+    },
+    {
+      "name": "predsin",
+      "description": "Místnost za hlavními dveřmi.",
+      "items": ["bankovky"],
+      "enemies": ["strazce"],
+      "exits": ["zahrada", "obyvaciPokoj"]
+    },
+    {
+      "name": "jidelna",
+      "description": "Místnost s velkým oknem, které je možné s trochou hluku otevřít ze zahrady.",
+      "items": ["sperky"],
+      "enemies": [],
+      "exits": ["zahrada", "kuchyne", "chodba"]
+    },
+    {
+      "name": "kuchyne",
+      "description": "Klíčová místnost pro únik přes zahradu. Je potřeba bojovat se strážným pokud vejdete do této místnosti. Nachází se zde hodně masa, které je potřeba na odlákání psů při útěku autem.",
+      "items": ["maso", "zlatePribory"],
+      "enemies": ["strazce"],
+      "exits": ["jidelna"]
+    },
+    {
+      "name": "obyvaciPokoj",
+      "description": "Velká otevřená místnost. Pokud hráč uniká helikoptérou a předtím nevyřídil strážce v předsíni, bude zde spatřen a nucen k boji.",
+      "items": ["sperky"],
+      "enemies": [],
+      "exits": ["predsin", "balkon", "chodba"]
+    },
+    {
+      "name": "chodba",
+      "description": "Místo, které slouží jako spojnice místností. když se hrdina rozhodne jít do ložnice všimne si starého strážce, ale ten u o něm ví a míří na něj zbraní a hrdina se s ním musí dohodnout aby ho nechal a nespustil poplach.",
+      "items": [],
+      "enemies": ["staryStrazce"],
+      "exits": ["jidelna", "obyvaciPokoj", "loznice", "galerie"]
+    },
+    {
+      "name": "loznice",
+      "description": "Zde spí pan Hubert. Všechny akce jsou zde více slyšet než v jiných místnostech. Za velkým obrazem se nachází trezor který je možné otevřít s kódem po hacknutí notebooku. ",
+      "items": ["hodinky", "hodinky"],
+      "enemies": ["hubert"],
+      "exits": ["chodba", "pracovna", "trezor"]
+    },
+    {
+      "name": "pracovna",
+      "description": "Místo, kde se nachází notebook, který je potřeba hacknout. Také zde Robin odhalí pravdu ohledně svého otce a zjistí že pravé jméno milionáře co vykrádá je pan Hubert. Po objevení téhle místnosti už může hrdina opustit vilu.",
+      "items": ["bankovky"],
+      "enemies": [],
+      "exits": ["loznice"]
+    },
+    {
+      "name": "trezor",
+      "description": "Jeden z možných hlavních lootů. Je plný zlatých cihel. ",
+      "items": ["zlateCihly"],
+      "enemies": [],
+      "exits": ["loznice"]
+    },
+    {
+      "name": "galerie",
+      "description": "Místo, kde jsou vystaveny vzácné obrazy je možné mít je jako hlavní loot. Obrazy jsou chráněné jedním strážcem, se kterým je po vstupu do místnosti nutné bojovat. ",
+      "items": ["velkyObraz", "malyObraz", "malyObraz", "malyObraz", "malyObraz", "malyObraz"],
+      "enemies": ["strazce"],
+      "exits": ["chodba"]
+    }
+  ]
+}

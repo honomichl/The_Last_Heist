@@ -1,6 +1,6 @@
-package Commands;
+package Command;
 
-public class CommandOdpovez extends Command {
+public class CommandVyhod extends Command {
     public String execute(String[] args) {
         return "";
     }

@@ -1,6 +1,6 @@
-package Commands;
+package Command;
 
-public class CommandHackni extends Command {
+public class CommandProhledej extends Command {
     public String execute(String[] args) {
         return "";
     }

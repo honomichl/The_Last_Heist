@@ -1,3 +1,5 @@
+package Game;
+
 public class Game {
     private Inventory inventory;
     private NoiseMeter noiseMeter;
