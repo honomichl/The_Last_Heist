@@ -22,6 +22,7 @@ public class Item {
         this.price = 0;
     }
 
+    //TODO price
 
 
     public String getName() { return ""; }

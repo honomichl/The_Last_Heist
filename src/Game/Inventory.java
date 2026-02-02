@@ -1,34 +1,64 @@
 package Game;
 
+import com.google.gson.internal.bind.util.ISO8601Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
+    private int freeSlots;
     private int size;
     private List<Item> items = new ArrayList<>();
 
     public void setSize(int number) {
-
-    }
-
-    public int getFreeSlots() {
-        return 0;
+        this.size = number;
+        this.freeSlots = this.size;
     }
 
     public void addItem(Item item) {
-
+        if (this.items.size() <= freeSlots) {
+            items.add(item);
+            freeSlots -= item.getSize();
+        } else {
+            System.out.println("neni dost mista");
+        }
     }
 
-    public void removeItem(Item item) {
-
-    }
-
-    public boolean findItem(String itemName) {
+    public boolean hasItem(String itemName) {
+        for (Item i : items) {
+            if (i.getName().equalsIgnoreCase(itemName)) {
+                return true;
+            }
+        }
         return false;
     }
 
-    public String showItems() {
-        return "";
+    public Item getItem(String itemName) {
+        for (Item i : items) {
+            if (i.getName().equalsIgnoreCase(itemName)) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    public void removeItem(Item item) {
+        if (items.contains(item)) {
+            items.remove(item);
+            freeSlots += item.getSize();
+        } else {
+            System.out.println("nemas tento item");
+        }
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void showItems() {
+        for (Item i : items) {
+            System.out.println(i.getName() + " - " + i.getSize());
+        }
     }
 
 }

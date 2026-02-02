@@ -78,9 +78,102 @@
       "exits": ["chodba"]
     }
   ],
-
   "items": [
-
+    {
+      "name": "nuz",
+      "description": "Tvůj věrný společník pro tichou likvidaci strážců.",
+      "size": 1,
+      "isMainLoot": false,
+      "minPrice": 0,
+      "maxPrice": 0
+    },
+    {
+      "name": "vysilacka",
+      "description": "Umožňuje spojení s Hackerem. Je dost hlasitá.",
+      "size": 1,
+      "isMainLoot": false,
+      "minPrice": 0,
+      "maxPrice": 0
+    },
+    {
+      "name": "hackovaciStroj",
+      "description": "Zařízení potřebné k odemčení zabezpečení vily.",
+      "size": 1,
+      "isMainLoot": false,
+      "minPrice": 0,
+      "maxPrice": 0
+    },
+    {
+      "name": "bankovky",
+      "description": "Balík hotovosti nalezený v předsíni nebo pracovně.",
+      "size": 1,
+      "isMainLoot": false,
+      "minPrice": 10000,
+      "maxPrice": 90000
+    },
+    {
+      "name": "sperky",
+      "description": "Drahé šperky z jídelny nebo obývacího pokoje.",
+      "size": 1,
+      "isMainLoot": false,
+      "minPrice": 40000,
+      "maxPrice": 80000
+    },
+    {
+      "name": "zlatePribory",
+      "description": "Zlaté příbory z kuchyně.",
+      "size": 1,
+      "isMainLoot": false,
+      "minPrice": 20000,
+      "maxPrice": 30000
+    },
+    {
+      "name": "hodinky",
+      "description": "Luxusní hodinky z ložnice pana Huberta.",
+      "size": 1,
+      "isMainLoot": false,
+      "minPrice": 30000,
+      "maxPrice": 80000
+    },
+    {
+      "name": "malyObraz",
+      "description": "Menší umělecké dílo z galerie.",
+      "size": 1,
+      "isMainLoot": false,
+      "minPrice": 10000,
+      "maxPrice": 40000
+    },
+    {
+      "name": "maso",
+      "description": "Flákota masa z kuchyně. Ideální pro psy.",
+      "size": 2,
+      "isMainLoot": false,
+      "minPrice": 0,
+      "maxPrice": 0
+    },
+    {
+      "name": "slozka",
+      "description": "Důkaz o nevině tvého otce. Nejcennější věc ve vile.",
+      "size": 1,
+      "isMainLoot": true,
+      "minPrice": 0,
+      "maxPrice": 0
+    },
+    {
+      "name": "zlato",
+      "description": "Těžké zlaté cihly z trezoru. Hlavní loot.",
+      "size": 3,
+      "isMainLoot": true,
+      "minPrice": 640000,
+      "maxPrice": 960000
+    },
+    {
+      "name": "velkyObraz",
+      "description": "Mistrovské dílo z galerie. Hlavní loot.",
+      "size": 3,
+      "isMainLoot": true,
+      "minPrice": 520000,
+      "maxPrice": 710000
+    }
   ]
-
 }

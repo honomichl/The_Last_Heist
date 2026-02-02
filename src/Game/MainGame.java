@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainGame {
-    private static MainGame instance; // Singleton instance
+    private static MainGame instance;
     private Player player;
     private NoiseMeter noiseMeter;
-    private boolean hacked = false; // Stav pro galerii
+    private boolean hacked = false;
     private Map<String, Room> allRooms = new HashMap<>();
 
 
