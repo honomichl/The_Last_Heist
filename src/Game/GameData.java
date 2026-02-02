@@ -10,6 +10,8 @@ public class GameData {
 
     public ArrayList<Room> rooms;
 
+    public ArrayList<Item> items;
+
     public static GameData loadFromResources(String resourcePath) {
 
         Gson gson = new Gson();
@@ -26,8 +28,17 @@ public class GameData {
             );
 
         } catch (Exception e) {
-            throw new RuntimeException("Chyba při načítání mapy: " + e.getMessage());
+            throw new RuntimeException("Chyba při načítání dat: " + e.getMessage());
         }
+    }
+
+    public Item findItem(String name) {
+        for (Item item : items) {
+            if (item.getName().equalsIgnoreCase(name)) {
+                return item;
+            }
+        }
+        return null;
     }
 
     public Room findRoom(String name) {
@@ -36,6 +47,6 @@ public class GameData {
                 return r;
             }
         }
-        throw new IllegalArgumentException("Neexistuje místnost: " + name);
+        return null;
     }
 }
