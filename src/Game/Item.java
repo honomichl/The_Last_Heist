@@ -2,6 +2,7 @@ package Game;
 
 public class Item {
     private String name;
+    private String id;
     private String description;
     private int size;
     private boolean isMainLoot;
@@ -12,8 +13,9 @@ public class Item {
     public Item() {
     }
 
-    public Item(String name, String description, int size, boolean isMainLoot, int minPrice, int maxPrice) {
+    public Item(String name,String id, String description, int size, boolean isMainLoot, int minPrice, int maxPrice) {
         this.name = name;
+        this.id = id;
         this.description = description;
         this.size = size;
         this.isMainLoot = isMainLoot;

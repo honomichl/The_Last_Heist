@@ -11,6 +11,7 @@ public class MainGame {
     private Map<String, Room> allRooms = new HashMap<>();
 
 
+
     public MainGame() {
         instance = this;
     }
