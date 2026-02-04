@@ -7,6 +7,7 @@ import java.util.List;
 
 public class CommandJdi extends Command {
 
+
     @Override
     public String execute(String[] parameters) {
         if (parameters.length == 0) {
@@ -47,3 +48,17 @@ public class CommandJdi extends Command {
         return "Error";
     }
 }
+
+//TODO zjisteni jake itemy a enemaci jsou v misnosti a udelat akce na zaklade toho
+/*
+public List<Item> getItemsInRoom(Room room) {
+    List<Item> result = new ArrayList<>();
+    for (Item item : gameData.allItems) {
+        // Porovnáš ID nebo jméno místnosti
+        if (item.getCurrentLocation() != null && item.getCurrentLocation().equals(room.getName())) {
+            result.add(item);
+        }
+    }
+    return result;
+}
+ */

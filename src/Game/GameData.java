@@ -12,6 +12,8 @@ public class GameData {
 
     public ArrayList<Item> items;
 
+    public ArrayList<Enemy> enemies;
+
     public static GameData loadFromResources(String resourcePath) {
 
         Gson gson = new Gson();
@@ -32,19 +34,28 @@ public class GameData {
         }
     }
 
-    public Item findItem(String name) {
+    public Item findItem(String id) {
         for (Item item : items) {
-            if (item.getName().equalsIgnoreCase(name)) {
+            if (item.getId().equalsIgnoreCase(id)) {
                 return item;
             }
         }
         return null;
     }
 
-    public Room findRoom(String name) {
+    public Room findRoom(String id) {
         for (Room r : rooms) {
-            if (r.getName().equalsIgnoreCase(name)) {
+            if (r.getId().equalsIgnoreCase(id)) {
                 return r;
+            }
+        }
+        return null;
+    }
+
+    public Enemy findEnemy(String id) {
+        for (Enemy e : enemies) {
+            if (e.getId().equalsIgnoreCase(id)) {
+                return e;
             }
         }
         return null;

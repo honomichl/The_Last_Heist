@@ -4,88 +4,66 @@
       "name": "zahrada",
       "id": "zahrada",
       "description": "Vstupní bod při infiltraci autem. Nacházejí se zde uvázaní psi. Slouží také jako místo pro únik.",
-      "items": [],
-      "enemies": ["psi"],
       "exits": ["predsin", "jidelna"]
     },
     {
       "name": "balkón",
       "id": "balkon",
       "description": "Místo pro infiltraci padákem. Také slouží jako místo pro únik helikoptérou, ale hluk z helikoptéry je slyšet i až do předsíně.",
-      "items": [],
-      "enemies": [],
       "exits": ["obyvaciPokoj"]
     },
     {
       "name": "predsíň",
       "id": "predsin",
       "description": "Místnost za hlavními dveřmi.",
-      "items": ["bankovky"],
-      "enemies": ["strazce"],
       "exits": ["zahrada", "obyvaciPokoj"]
     },
     {
       "name": "jídelna",
       "id": "jidelna",
       "description": "Místnost s velkým oknem, které je možné s trochou hluku otevřít ze zahrady.",
-      "items": ["sperky"],
-      "enemies": [],
       "exits": ["zahrada", "kuchyne", "chodba"]
     },
     {
       "name": "kuchyně",
       "id": "kuchyne",
       "description": "Klíčová místnost pro únik přes zahradu. Je potřeba bojovat se strážným pokud vejdete do této místnosti. Nachází se zde hodně masa, které je potřeba na odlákání psů při útěku autem.",
-      "items": ["maso", "zlatePribory"],
-      "enemies": ["strazce"],
       "exits": ["jidelna"]
     },
     {
-      "name": "obyvacíPokoj",
+      "name": "obyvací pokoj",
       "id": "obyvaciPokoj",
       "description": "Velká otevřená místnost. Pokud hráč uniká helikoptérou a předtím nevyřídil strážce v předsíni, bude zde spatřen a nucen k boji.",
-      "items": ["sperky"],
-      "enemies": [],
       "exits": ["predsin", "balkon", "chodba"]
     },
     {
       "name": "chodba",
       "id": "chodba",
       "description": "Místo, které slouží jako spojnice místností. když se hrdina rozhodne jít do ložnice všimne si starého strážce, ale ten u o něm ví a míří na něj zbraní a hrdina se s ním musí dohodnout aby ho nechal a nespustil poplach.",
-      "items": [],
-      "enemies": ["staryStrazce"],
       "exits": ["jidelna", "obyvaciPokoj", "loznice", "galerie"]
     },
     {
       "name": "ložnice",
       "id": "loznice",
       "description": "Zde spí pan Hubert. Všechny akce jsou zde více slyšet než v jiných místnostech. Za velkým obrazem se nachází trezor který je možné otevřít s kódem po hacknutí notebooku. ",
-      "items": ["hodinky1", "hodinky2"],
-      "enemies": ["hubert"],
       "exits": ["chodba", "pracovna", "trezor"]
     },
     {
       "name": "pracovna",
       "id": "pracovna",
       "description": "Místo, kde se nachází notebook, který je potřeba hacknout. Také zde Robin odhalí pravdu ohledně svého otce a zjistí že pravé jméno milionáře co vykrádá je pan Hubert. Po objevení téhle místnosti už může hrdina opustit vilu.",
-      "items": ["bankovky"],
-      "enemies": [],
       "exits": ["loznice"]
     },
     {
       "name": "trezor",
       "id": "trezor",
       "description": "Jeden z možných hlavních lootů. Je plný zlatých cihel. ",
-      "items": ["zlateCihly"],
-      "enemies": [],
       "exits": ["loznice"]
     },
     {
       "name": "galerie",
       "id": "galerie",
       "description": "Místo, kde jsou vystaveny vzácné obrazy je možné mít je jako hlavní loot. Obrazy jsou chráněné jedním strážcem, se kterým je po vstupu do místnosti nutné bojovat. ",
-      "items": ["velkyObraz", "malyObraz1", "malyObraz2", "malyObraz3", "malyObraz4", "malyObraz5"],
-      "enemies": ["strazce"],
       "exits": ["chodba"]
     }
   ],
@@ -96,45 +74,79 @@
       "id": "nuz",
       "description": "Tvůj věrný společník pro tichou likvidaci strážců.",
       "size": 1,
-      "isMainLoot": false,
-      "minPrice": 0,
-      "maxPrice": 0
+      "currentLocation": "inventory"
     },
     {
       "name": "vysílačka",
       "id": "vysilacka",
       "description": "Umožňuje spojení s Hackerem. Je dost hlasitá.",
       "size": 1,
-      "isMainLoot": false,
-      "minPrice": 0,
-      "maxPrice": 0
+      "currentLocation": "inventory"
     },
     {
-      "name": "hackovacíStroj",
+      "name": "hackovací stroj",
       "id": "hackovaciStroj",
       "description": "Zařízení potřebné k odemčení zabezpečení vily.",
       "size": 1,
+      "currentLocation": "inventory"
+    },
+    {
+      "name": "maso",
+      "id": "maso",
+      "description": "Flákota masa z kuchyně. Ideální pro psy.",
+      "size": 2,
+      "currentLocation": "kuchyne"
+    },
+    {
+      "name": "složka",
+      "id": "slozka",
+      "description": "Důkaz o nevině tvého otce. Nejcennější věc ve vile.",
+      "size": 1,
+      "currentLocation": "pracovna"
+    },
+    //TODO auto add metoda pro pridani itemu do inventory kdyz current location inventory
+    //TODO přesky = letecky odchod
+
+
+    {
+      "name": "zlatá cihla",
+      "id": "zlataCihla",
+      "description": "Menší zlatá cihla nalezená v pracovně.",
+      "size": 1,
       "isMainLoot": false,
-      "minPrice": 0,
-      "maxPrice": 0
+      "minValue": 20,
+      "maxValue": 90,
+      "currentLocation": "pracovna"
     },
     {
       "name": "bankovky",
       "id": "bankovky",
-      "description": "Balík hotovosti nalezený v předsíni nebo pracovně.",
+      "description": "Balík hotovosti nalezený v předsíni.",
       "size": 1,
       "isMainLoot": false,
-      "minPrice": 10000,
-      "maxPrice": 90000
+      "minValue": 30,
+      "maxValue": 50,
+      "currentLocation": "predsin"
     },
     {
-      "name": "šperky",
-      "id": "sperky",
-      "description": "Drahé šperky z jídelny nebo obývacího pokoje.",
+      "name": "prsten",
+      "id": "prsten",
+      "description": "Drahý šperk z obývacího pokoje.",
       "size": 1,
       "isMainLoot": false,
-      "minPrice": 40000,
-      "maxPrice": 80000
+      "minValue": 30,
+      "maxValue": 70,
+      "currentLocation": "obyvaciPokoj"
+    },
+    {
+      "name": "řetízek",
+      "id": "retizek",
+      "description": "Drahý šperk z jídelny.",
+      "size": 1,
+      "isMainLoot": false,
+      "minValue": 40,
+      "maxValue": 80,
+      "currentLocation": "jidelna"
     },
     {
       "name": "zlatéPříbory",
@@ -142,98 +154,92 @@
       "description": "Zlaté příbory z kuchyně.",
       "size": 1,
       "isMainLoot": false,
-      "minPrice": 20000,
-      "maxPrice": 30000
+      "minValue": 10,
+      "maxValue": 30,
+      "currentLocation": "kuchyne"
     },
     {
-      "name": "rolexHodinky",
+      "name": "hodinky Rolex",
       "id": "hodinky1",
       "description": "Luxusní hodinky z ložnice pana Huberta.",
       "size": 1,
       "isMainLoot": false,
-      "minPrice": 30000,
-      "maxPrice": 80000
+      "minValue": 40,
+      "maxValue": 90,
+      "currentLocation": "loznice"
     },
     {
-      "name": "omegaHodinky",
+      "name": "hodinky Omega",
       "id": "hodinky2",
       "description": "Luxusní hodinky z ložnice pana Huberta.",
       "size": 1,
       "isMainLoot": false,
-      "minPrice": 30000,
-      "maxPrice": 80000
+      "minValue": 30,
+      "maxValue": 80,
+      "currentLocation": "loznice"
     },
     {
-      "name": "malýObrazKamennáCesta",
+      "name": "malý obraz Kamenná Cesta",
       "id": "malyObraz1",
       "description": "Menší umělecké dílo z galerie.",
       "size": 1,
       "isMainLoot": false,
-      "minPrice": 10000,
-      "maxPrice": 40000
+      "minValue": 10,
+      "maxValue": 40,
+      "currentLocation": "galerie"
     },
     {
-      "name": "malýObrazDřevěnýMůstek",
+      "name": "malý obraz Dřevěný Můstek",
       "id": "malyObraz2",
       "description": "Menší umělecké dílo z galerie.",
       "size": 1,
       "isMainLoot": false,
-      "minPrice": 10000,
-      "maxPrice": 40000
+      "minValue": 10,
+      "maxValue": 40,
+      "currentLocation": "galerie"
     },
     {
-      "name": "malýObrazBílýDům",
+      "name": "malý obraz Bílý Dům",
       "id": "malyObraz3",
       "description": "Menší umělecké dílo z galerie.",
       "size": 1,
       "isMainLoot": false,
-      "minPrice": 20000,
-      "maxPrice": 50000
+      "minValue": 20,
+      "maxValue": 50,
+      "currentLocation": "galerie"
     },
     {
-      "name": "malýObrazDivokáŘeka",
+      "name": "malý obraz Divoká Řeka",
       "id": "malyObraz4",
       "description": "Menší umělecké dílo z galerie.",
       "size": 1,
       "isMainLoot": false,
-      "minPrice": 10000,
-      "maxPrice": 40000
+      "minValue": 10,
+      "maxValue": 40,
+      "currentLocation": "galerie"
     },
     {
-      "name": "malýObrazPrudkýSráz",
+      "name": "malý obraz Prudký Sráz",
       "id": "malyObraz5",
       "description": "Menší umělecké dílo z galerie.",
       "size": 1,
       "isMainLoot": false,
-      "minPrice": 10000,
-      "maxPrice": 40000
+      "minValue": 10,
+      "maxValue": 40,
+      "currentLocation": "galerie"
     },
-    {
-      "name": "maso",
-      "id": "maso",
-      "description": "Flákota masa z kuchyně. Ideální pro psy.",
-      "size": 2,
-      "isMainLoot": false,
-      "minPrice": 0,
-      "maxPrice": 0
-    },
-    {
-      "name": "složka",
-      "id": "slozka",
-      "description": "Důkaz o nevině tvého otce. Nejcennější věc ve vile.",
-      "size": 1,
-      "isMainLoot": false,
-      "minPrice": 0,
-      "maxPrice": 0
-    },
+
+
+
     {
       "name": "zlato",
       "id": "zlato",
       "description": "Těžké zlaté cihly z trezoru. Hlavní loot.",
       "size": 3,
       "isMainLoot": true,
-      "minPrice": 640000,
-      "maxPrice": 960000
+      "minValue": 640,
+      "maxValue": 960,
+      "currentLocation": "trezor"
     },
     {
       "name": "velkýObrazPollardWillow",
@@ -241,29 +247,47 @@
       "description": "Mistrovské dílo z galerie. Hlavní loot.",
       "size": 3,
       "isMainLoot": true,
-      "minPrice": 520000,
-      "maxPrice": 710000
+      "minValue": 520,
+      "maxValue": 710,
+      "currentLocation": "galerie"
     }
   ],
-  //TODO vymyslet atributy enemaku (mozna currentRoom pro items a enemy)
+
   "Enemy": [
     {
-      "name": "Max",
-      "id": "dog",
+      "name": "pes dobrman",
+      "id": "dog1",
       "type": "dog",
-      "description": "Velký dobrman, který hlídá zahradu."
+      "description": "Velký dlouho nekrmený dobrman, který hlídá zahradu.",
+      "currentLocation": "zahrada"
     },
     {
       "name": "strazce_1",
+      "id": "strazceGalerie",
       "type": "guard",
-      "description": "Profesionální ochranka v černém obleku.",
-      "startRoom": "chodba"
+      "description": "Profesionální ochranka v černém obleku, Obvykle v galerii.",
+      "currentLocation": "galerie"
+    },
+    {
+      "name": "strazce_2",
+      "id": "strazceKuchyne",
+      "type": "guard",
+      "description": "Profesionální ochranka v černém obleku, Obvykle v kuchyni.",
+      "currentLocation": "predsin"
+    },
+    {
+      "name": "strazce_3",
+      "id": "strazcePredsin",
+      "type": "guard",
+      "description": "Profesionální ochranka v černém obleku, Obvykle v předsíni.",
+      "currentLocation": "kuchyne"
     },
     {
       "name": "stary_strazce",
-      "type": "old_guard",
+      "id": "staryStrazce",
+      "type": "oldGuard",
       "description": "Vypadá, že tu pracuje desítky let. Má v ruce zbraň.",
-      "startRoom": "pracovna"
+      "currentLocation": "chodba"
     }
   ]
 }
