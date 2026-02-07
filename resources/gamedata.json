@@ -253,41 +253,61 @@
     }
   ],
 
-  "Enemy": [
+  "enemies": [
     {
       "name": "pes dobrman",
       "id": "dog1",
       "type": "dog",
       "description": "Velký dlouho nekrmený dobrman, který hlídá zahradu.",
-      "currentLocation": "zahrada"
+      "currentLocation": "zahrada",
+      "usefulItem": "maso"
     },
     {
       "name": "strazce_1",
       "id": "strazceGalerie",
       "type": "guard",
       "description": "Profesionální ochranka v černém obleku, Obvykle v galerii.",
-      "currentLocation": "galerie"
+      "currentLocation": "galerie",
+      "usefulItem": "nuz"
     },
     {
       "name": "strazce_2",
       "id": "strazceKuchyne",
       "type": "guard",
       "description": "Profesionální ochranka v černém obleku, Obvykle v kuchyni.",
-      "currentLocation": "predsin"
+      "currentLocation": "predsin",
+      "usefulItem": "nuz"
     },
     {
       "name": "strazce_3",
       "id": "strazcePredsin",
       "type": "guard",
       "description": "Profesionální ochranka v černém obleku, Obvykle v předsíni.",
-      "currentLocation": "kuchyne"
+      "currentLocation": "kuchyne",
+      "usefulItem": "nuz"
     },
     {
-      "name": "stary_strazce",
+      "name": "stary strazce",
       "id": "staryStrazce",
       "type": "oldGuard",
       "description": "Vypadá, že tu pracuje desítky let. Má v ruce zbraň.",
       "currentLocation": "chodba"
+    }
+  ],
+  "hackers": [
+    {
+      "name": "Gabriel",
+      "id": "hacker1",
+      "description": "Zkušený hacker, dává lepší rady a je potišší.",
+      "price": 20,
+      "skill": 5
+    },
+    {
+      "name": "Erik",
+      "id": "hacke2",
+      "description": "Levnější, ale jeho přístroj dělá větší hluk.",
+      "price": 10,
+      "skill": 2
     }
   ]
 }

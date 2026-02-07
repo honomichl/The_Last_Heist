@@ -1,6 +1,7 @@
 package Command;
 
 import Game.*;
+import com.google.gson.internal.bind.util.ISO8601Utils;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class CommandJdi extends Command {
         Player player = MainGame.getInstance().getPlayer();
         Room currentRoom = player.getCurrentRoom();
 
+
         List<String> validExits = currentRoom.getExits();
         boolean valid = false;
 
@@ -30,15 +32,16 @@ public class CommandJdi extends Command {
         }
 
         if (!valid) {
-            return "Nelze jít do '" + roomName + "' odtud. Pokud nevíš kam můžeš použij příkaz: Vychody";
+            return  "Nelze jít do '" + roomName + "' odtud. Pokud nevíš kam můžeš použij příkaz: Vychody";
         }
+
 
         //TODO trezor
         //TODO galerie
         //TODO vstup kuchyn
 
 
-        Room nextRoom = MainGame.getInstance().getAllRooms().get(roomName.toLowerCase());
+        Room nextRoom = MainGame.getInstance().getAllRooms().get(roomName);
 
         if (nextRoom != null) {
             player.setCurrentRoom(nextRoom);

@@ -8,6 +8,7 @@ public class Room {
     private String description;
     private List<String> exits = new ArrayList<>();
 
+
     public Room() {
     }
 
@@ -24,15 +25,15 @@ public class Room {
         return name;
     }
 
-    public List<String> getExits() {
-        return this.exits;
+    public String getId() {
+        return id;
     }
 
     public String getDescription() {
-        return "";
+        return description;
     }
 
-    public String getId() {
-        return id;
+    public List<String> getExits() {
+        return exits;
     }
 }

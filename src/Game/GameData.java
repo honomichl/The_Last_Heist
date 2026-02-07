@@ -14,6 +14,8 @@ public class GameData {
 
     public ArrayList<Enemy> enemies;
 
+    public ArrayList<Hacker> hackers;
+
     public static GameData loadFromResources(String resourcePath) {
 
         Gson gson = new Gson();
@@ -56,6 +58,15 @@ public class GameData {
         for (Enemy e : enemies) {
             if (e.getId().equalsIgnoreCase(id)) {
                 return e;
+            }
+        }
+        return null;
+    }
+
+    public Hacker findHacker(String id) {
+        for (Hacker h : hackers) {
+            if (h.getId().equalsIgnoreCase(id)) {
+                return h;
             }
         }
         return null;

@@ -1,7 +1,7 @@
 package Game;
 
 public class Item {
-    // jmeno pro sout
+    // jmeno pro vypis
     private String name;
     // jmeno do kodu
     private String id;
@@ -50,13 +50,44 @@ public class Item {
     }
 
 
+
+    public String getName() {
+        return name;
+    }
+
     public String getId() {
         return id;
     }
 
-    public String getName() { return ""; }
-    public String getDescription() { return ""; }
-    public int getSize() { return 0; }
+    public String getDescription() {
+        return description;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public boolean isMainLoot() {
+        return isMainLoot;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public String getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public boolean isLoot() {
+        return loot;
+    }
+
+    public void setCurrentLocation(String currentLocation) {
+        this.currentLocation = currentLocation;
+    }
+
+
 }
 
 

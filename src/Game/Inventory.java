@@ -8,10 +8,7 @@ public class Inventory {
     private int size;
     private List<Item> items = new ArrayList<>();
 
-    public void setSize(int number) {
-        this.size = number;
-        this.freeSlots = this.size;
-    }
+
 
     public void addItem(Item item) {
         if (this.items.size() <= freeSlots) {
@@ -49,14 +46,30 @@ public class Inventory {
         }
     }
 
+    public void showItems() {
+        for (Item i : items) {
+            System.out.println(i.getName() + " - size: " + i.getSize());
+        }
+    }
+
+
+
     public List<Item> getItems() {
         return items;
     }
 
-    public void showItems() {
-        for (Item i : items) {
-            System.out.println(i.getName() + " - " + i.getSize());
-        }
+    public int getFreeSlots() {
+        return freeSlots;
     }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int number) {
+        this.size = number;
+        this.freeSlots = this.size;
+    }
+
 
 }
