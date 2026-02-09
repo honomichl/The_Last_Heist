@@ -4,66 +4,77 @@
       "name": "zahrada",
       "id": "zahrada",
       "description": "Vstupní bod při infiltraci autem. Nacházejí se zde uvázaní psi. Slouží také jako místo pro únik.",
+      "hidden": false,
       "exits": ["predsin", "jidelna"]
     },
     {
       "name": "balkón",
       "id": "balkon",
       "description": "Místo pro infiltraci padákem. Také slouží jako místo pro únik helikoptérou, ale hluk z helikoptéry je slyšet i až do předsíně.",
+      "hidden": false,
       "exits": ["obyvaciPokoj"]
     },
     {
       "name": "predsíň",
       "id": "predsin",
       "description": "Místnost za hlavními dveřmi.",
+      "hidden": false,
       "exits": ["zahrada", "obyvaciPokoj"]
     },
     {
       "name": "jídelna",
       "id": "jidelna",
       "description": "Místnost s velkým oknem, které je možné s trochou hluku otevřít ze zahrady.",
+      "hidden": false,
       "exits": ["zahrada", "kuchyne", "chodba"]
     },
     {
       "name": "kuchyně",
       "id": "kuchyne",
       "description": "Klíčová místnost pro únik přes zahradu. Je potřeba bojovat se strážným pokud vejdete do této místnosti. Nachází se zde hodně masa, které je potřeba na odlákání psů při útěku autem.",
+      "hidden": false,
       "exits": ["jidelna"]
     },
     {
       "name": "obyvací pokoj",
       "id": "obyvaciPokoj",
       "description": "Velká otevřená místnost. Pokud hráč uniká helikoptérou a předtím nevyřídil strážce v předsíni, bude zde spatřen a nucen k boji.",
+      "hidden": false,
       "exits": ["predsin", "balkon", "chodba"]
     },
     {
       "name": "chodba",
       "id": "chodba",
       "description": "Místo, které slouží jako spojnice místností. když se hrdina rozhodne jít do ložnice všimne si starého strážce, ale ten u o něm ví a míří na něj zbraní a hrdina se s ním musí dohodnout aby ho nechal a nespustil poplach.",
+      "hidden": false,
       "exits": ["jidelna", "obyvaciPokoj", "loznice", "galerie"]
     },
     {
       "name": "ložnice",
       "id": "loznice",
       "description": "Zde spí pan Hubert. Všechny akce jsou zde více slyšet než v jiných místnostech. Za velkým obrazem se nachází trezor který je možné otevřít s kódem po hacknutí notebooku. ",
+      "hidden": false,
       "exits": ["chodba", "pracovna", "trezor"]
     },
     {
       "name": "pracovna",
       "id": "pracovna",
       "description": "Místo, kde se nachází notebook, který je potřeba hacknout. Také zde Robin odhalí pravdu ohledně svého otce a zjistí že pravé jméno milionáře co vykrádá je pan Hubert. Po objevení téhle místnosti už může hrdina opustit vilu.",
+      "hidden": false,
       "exits": ["loznice"]
     },
     {
       "name": "trezor",
       "id": "trezor",
       "description": "Jeden z možných hlavních lootů. Je plný zlatých cihel. ",
+      "hidden": true,
       "exits": ["loznice"]
     },
     {
       "name": "galerie",
       "id": "galerie",
       "description": "Místo, kde jsou vystaveny vzácné obrazy je možné mít je jako hlavní loot. Obrazy jsou chráněné jedním strážcem, se kterým je po vstupu do místnosti nutné bojovat. ",
+      "hidden": false,
       "exits": ["chodba"]
     }
   ],
@@ -74,38 +85,42 @@
       "id": "nuz",
       "description": "Tvůj věrný společník pro tichou likvidaci strážců.",
       "size": 1,
-      "currentLocation": "inventory"
+      "currentLocation": "inventory",
+      "hidden": false
     },
     {
       "name": "vysílačka",
       "id": "vysilacka",
       "description": "Umožňuje spojení s Hackerem. Je dost hlasitá.",
       "size": 1,
-      "currentLocation": "inventory"
+      "currentLocation": "inventory",
+      "hidden": false
     },
     {
       "name": "hackovací stroj",
       "id": "hackovaciStroj",
       "description": "Zařízení potřebné k odemčení zabezpečení vily.",
       "size": 1,
-      "currentLocation": "inventory"
+      "currentLocation": "inventory",
+      "hidden": false
     },
     {
       "name": "maso",
       "id": "maso",
       "description": "Flákota masa z kuchyně. Ideální pro psy.",
       "size": 2,
-      "currentLocation": "kuchyne"
+      "currentLocation": "kuchyne",
+      "hidden": true
     },
     {
       "name": "složka",
       "id": "slozka",
       "description": "Důkaz o nevině tvého otce. Nejcennější věc ve vile.",
       "size": 1,
-      "currentLocation": "pracovna"
+      "currentLocation": "",
+      "hidden": false
     },
-    //TODO auto add metoda pro pridani itemu do inventory kdyz current location inventory
-    //TODO přesky = letecky odchod
+
 
 
     {
@@ -116,7 +131,8 @@
       "isMainLoot": false,
       "minValue": 20,
       "maxValue": 90,
-      "currentLocation": "pracovna"
+      "currentLocation": "pracovna",
+      "hidden": true
     },
     {
       "name": "bankovky",
@@ -126,7 +142,8 @@
       "isMainLoot": false,
       "minValue": 30,
       "maxValue": 50,
-      "currentLocation": "predsin"
+      "currentLocation": "predsin",
+      "hidden": true
     },
     {
       "name": "prsten",
@@ -136,7 +153,8 @@
       "isMainLoot": false,
       "minValue": 30,
       "maxValue": 70,
-      "currentLocation": "obyvaciPokoj"
+      "currentLocation": "obyvaciPokoj",
+      "hidden": true
     },
     {
       "name": "řetízek",
@@ -146,7 +164,8 @@
       "isMainLoot": false,
       "minValue": 40,
       "maxValue": 80,
-      "currentLocation": "jidelna"
+      "currentLocation": "jidelna",
+      "hidden": true
     },
     {
       "name": "zlatéPříbory",
@@ -156,7 +175,8 @@
       "isMainLoot": false,
       "minValue": 10,
       "maxValue": 30,
-      "currentLocation": "kuchyne"
+      "currentLocation": "kuchyne",
+      "hidden": true
     },
     {
       "name": "hodinky Rolex",
@@ -166,7 +186,8 @@
       "isMainLoot": false,
       "minValue": 40,
       "maxValue": 90,
-      "currentLocation": "loznice"
+      "currentLocation": "loznice",
+      "hidden": true
     },
     {
       "name": "hodinky Omega",
@@ -176,7 +197,8 @@
       "isMainLoot": false,
       "minValue": 30,
       "maxValue": 80,
-      "currentLocation": "loznice"
+      "currentLocation": "loznice",
+      "hidden": true
     },
     {
       "name": "malý obraz Kamenná Cesta",
@@ -186,7 +208,8 @@
       "isMainLoot": false,
       "minValue": 10,
       "maxValue": 40,
-      "currentLocation": "galerie"
+      "currentLocation": "galerie",
+      "hidden": false
     },
     {
       "name": "malý obraz Dřevěný Můstek",
@@ -196,7 +219,8 @@
       "isMainLoot": false,
       "minValue": 10,
       "maxValue": 40,
-      "currentLocation": "galerie"
+      "currentLocation": "galerie",
+      "hidden": false
     },
     {
       "name": "malý obraz Bílý Dům",
@@ -206,7 +230,8 @@
       "isMainLoot": false,
       "minValue": 20,
       "maxValue": 50,
-      "currentLocation": "galerie"
+      "currentLocation": "galerie",
+      "hidden": false
     },
     {
       "name": "malý obraz Divoká Řeka",
@@ -216,7 +241,8 @@
       "isMainLoot": false,
       "minValue": 10,
       "maxValue": 40,
-      "currentLocation": "galerie"
+      "currentLocation": "galerie",
+      "hidden": false
     },
     {
       "name": "malý obraz Prudký Sráz",
@@ -226,7 +252,8 @@
       "isMainLoot": false,
       "minValue": 10,
       "maxValue": 40,
-      "currentLocation": "galerie"
+      "currentLocation": "galerie",
+      "hidden": false
     },
 
 
@@ -239,7 +266,8 @@
       "isMainLoot": true,
       "minValue": 640,
       "maxValue": 960,
-      "currentLocation": "trezor"
+      "currentLocation": "trezor",
+      "hidden": false
     },
     {
       "name": "velkýObrazPollardWillow",
@@ -249,7 +277,8 @@
       "isMainLoot": true,
       "minValue": 520,
       "maxValue": 710,
-      "currentLocation": "galerie"
+      "currentLocation": "galerie",
+      "hidden": false
     }
   ],
 
@@ -291,7 +320,7 @@
       "id": "staryStrazce",
       "type": "oldGuard",
       "description": "Vypadá, že tu pracuje desítky let. Má v ruce zbraň.",
-      "currentLocation": "chodba"
+      "currentLocation": "loznice"
     }
   ],
   "hackers": [
@@ -304,7 +333,7 @@
     },
     {
       "name": "Erik",
-      "id": "hacke2",
+      "id": "hacker2",
       "description": "Levnější, ale jeho přístroj dělá větší hluk.",
       "price": 10,
       "skill": 2

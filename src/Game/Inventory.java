@@ -10,13 +10,25 @@ public class Inventory {
 
 
 
-    public void addItem(Item item) {
-        if (this.items.size() <= freeSlots) {
-            items.add(item);
-            freeSlots -= item.getSize();
+
+
+
+    public void addItem(String itemId) {
+
+        Item item = MainGame.getInstance().getGameData().findItem(itemId);
+
+        if (item != null) {
+            if (this.items.size() <= this.freeSlots) {
+                this.items.add(item);
+                MainGame.getInstance().getGameData().findItem(itemId).setCurrentLocation("inventar");
+                this.freeSlots -= item.getSize();
+            } else {
+                System.out.println("neni dost mista");
+            }
         } else {
-            System.out.println("neni dost mista");
+            System.out.println("pozadovany predmet "+ item +" neexistuje");
         }
+
     }
 
     public boolean hasItem(String itemName) {
@@ -37,19 +49,42 @@ public class Inventory {
         return null;
     }
 
-    public void removeItem(Item item) {
-        if (items.contains(item)) {
-            items.remove(item);
-            freeSlots += item.getSize();
+    public void removeItem(String itemId) {
+        Item item = MainGame.getInstance().getGameData().findItem(itemId);
+
+        if (item != null) {
+            if (items.contains(item)) {
+                items.remove(item);
+                MainGame.getInstance().getGameData().findItem(itemId).setCurrentLocation(MainGame.getInstance().getPlayer().getCurrentRoom().getId());
+                freeSlots += item.getSize();
+            } else {
+                System.out.println("pozadovany predmet neni v inventari");
+            }
         } else {
-            System.out.println("nemas tento item");
+            System.out.println("pozadovany predmet neexistuje");
         }
+
     }
 
-    public void showItems() {
-        for (Item i : items) {
-            System.out.println(i.getName() + " - size: " + i.getSize());
+    public String showItems() {
+        String text = "";
+
+        if (items.isEmpty()) {
+            text = "Inventář je prázdný\n";
+        } else {
+            text = "V inventáři máš:\n";
+            for (Item i : items) {
+                text += i.getName() + " - velikost: " + i.getSize() + "\n";
+            }
         }
+
+        if (freeSlots == 0) {
+            text += "Tvůj inventář je plný.";
+        } else {
+            text += "Volná místa: " + freeSlots ;
+        }
+
+        return text;
     }
 
 

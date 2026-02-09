@@ -1,6 +1,8 @@
 package Game;
 
 import Command.*;
+
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +10,9 @@ import java.util.Map;
 public class UserInterface{
     private Map<String, Command> CommandMap = new HashMap<>();
 
+    public Collection<Command> getCommands() {
+        return this.CommandMap.values();
+    }
 
     public UserInterface() {
         CommandMap.put("hackni".toLowerCase(), new CommandHackni());
@@ -15,11 +20,11 @@ public class UserInterface{
         CommandMap.put("inventar".toLowerCase(), new CommandInventar());
         CommandMap.put("jdi".toLowerCase(), new CommandJdi());
         CommandMap.put("konec".toLowerCase(), new CommandKonec());
-        CommandMap.put("mluv".toLowerCase(), new CommandMluv());
         CommandMap.put("napoveda".toLowerCase(), new CommandNapoveda());
         CommandMap.put("prikazy".toLowerCase(), new CommandPrikazy());
         CommandMap.put("prohledej".toLowerCase(), new CommandProhledej());
         CommandMap.put("seber".toLowerCase(), new CommandSeber());
+        CommandMap.put("utec".toLowerCase(), new CommandUtec());
         CommandMap.put("vychody".toLowerCase(), new CommandVychody());
         CommandMap.put("vyhod".toLowerCase(), new CommandVyhod());
     }
@@ -41,7 +46,10 @@ public class UserInterface{
             System.out.println(vysledek);
 
         } else {
-            System.out.println("Tenhle příkaz neznám. Pokud nevíš jaké jsou příkazy zkus příkaz: prikaz.");
+            System.out.println("Tenhle příkaz neznám. Pokud nevíš jaké jsou příkazy zkus příkaz 'prikazy'.");
         }
     }
+
+
+
 }

@@ -21,12 +21,14 @@ public class Item {
     private String currentLocation;
     // ma hodnotu?
     private boolean loot;
+    // je ukryty?
+    private boolean hidden;
 
 
     public Item() {
     }
 
-    public Item(String name, String id, String description, int size, boolean isMainLoot, int minValue, int maxValue, String currentRoom) {
+    public Item(String name, String id, String description, int size, boolean isMainLoot, int minValue, int maxValue, String currentLocation, boolean hidden) {
         this.name = name;
         this.id = id;
         this.description = description;
@@ -35,19 +37,23 @@ public class Item {
         this.minValue = minValue;
         this.maxValue = maxValue;
         this.value = (int)(Math.random() * (maxValue- minValue + 1) - minValue) * 1000;
-        this.currentLocation = currentRoom;
+        this.currentLocation = currentLocation;
         this.loot = true;
+        this.hidden = hidden;
     }
 
-    public Item(int size, String description, String id, String name, String currentRoom) {
-        this.size = size;
-        this.description = description;
-        this.id = id;
+    public Item(String name, String id, String description, int size, String currentLocation, boolean hidden) {
         this.name = name;
-        this.currentLocation = currentRoom;
-        this.isMainLoot = false;
+        this.id = id;
+        this.description = description;
+        this.size = size;
+        this.currentLocation = currentLocation;
         this.loot = false;
+        this.isMainLoot = false;
+        this.hidden = hidden;
     }
+
+
 
 
 
@@ -83,11 +89,17 @@ public class Item {
         return loot;
     }
 
+    public boolean isHidden() {
+        return hidden;
+    }
+
     public void setCurrentLocation(String currentLocation) {
         this.currentLocation = currentLocation;
     }
 
-
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
 }
 
 

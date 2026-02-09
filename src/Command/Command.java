@@ -13,4 +13,8 @@ public abstract class Command {
     }
 
     public abstract String execute(String[] args);
+
+    public boolean isValid() {
+        return true;
+    }
 }

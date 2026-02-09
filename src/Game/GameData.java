@@ -38,7 +38,7 @@ public class GameData {
 
     public Item findItem(String id) {
         for (Item item : items) {
-            if (item.getId().equalsIgnoreCase(id)) {
+            if (item.getId().equals(id)) {
                 return item;
             }
         }
@@ -46,8 +46,8 @@ public class GameData {
     }
 
     public Room findRoom(String id) {
-        for (Room r : rooms) {
-            if (r.getId().equalsIgnoreCase(id)) {
+        for (Room r : this.rooms) {
+            if (r.getId().equals(id)) {
                 return r;
             }
         }
@@ -56,7 +56,7 @@ public class GameData {
 
     public Enemy findEnemy(String id) {
         for (Enemy e : enemies) {
-            if (e.getId().equalsIgnoreCase(id)) {
+            if (e.getId().equals(id)) {
                 return e;
             }
         }
@@ -65,7 +65,7 @@ public class GameData {
 
     public Hacker findHacker(String id) {
         for (Hacker h : hackers) {
-            if (h.getId().equalsIgnoreCase(id)) {
+            if (h.getId().equals(id)) {
                 return h;
             }
         }
