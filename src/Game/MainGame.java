@@ -1,11 +1,12 @@
 package Game;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
 public class MainGame {
-    //
+    // instance
     private static MainGame instance;
     // hrac
     private Player player = new Player();
@@ -60,6 +61,15 @@ public class MainGame {
         System.out.println("1 = nejlehčí, 2 = střední, 3 = těžká");
         System.out.println("Zvolte obtížnost (1-3): ");
         this.difficulty = scanner.nextInt();
+        while (true) {
+            this.difficulty = scanner.nextInt();
+            if (difficulty == 1||difficulty == 2||difficulty == 3){
+                break;
+            } else {
+                System.out.println("skus od 1 do 3");
+            }
+
+        }
 
         scanner.nextLine();
 
@@ -73,54 +83,86 @@ public class MainGame {
         System.out.println("Autem (vysadím tě u zahrady)");
         System.out.println("Letecky (výsadek padákem na balkon)");
 
-        String volbaVstup = scanner.nextLine().toLowerCase();
-        if (volbaVstup == "letecky") {
-            this.infiltration = "letecky";
-            System.out.println("Peter: 'Padákem na balkon... Odvážné, ale tiché.'");
-        } else {
-            this.infiltration = "autem";
-            System.out.println("Peter: 'Auto je jistota. Půjdeš buď oknem, nebo hlavními dveřmi.'");
+        while(true) {
+            this.infiltration = scanner.nextLine().toLowerCase();
+            if (infiltration.equals("letecky")) {
+                System.out.println("Peter: 'Padákem na balkon... Odvážné, ale tiché.'");
+                break;
+            } else if (infiltration.equals("autem")) {
+                System.out.println("Peter: 'Auto je jistota. Půjdeš buď oknem, nebo hlavními dveřmi.'");
+                break;
+            } else {
+                System.out.println("tohle nepujde");
+            }
         }
 
         System.out.println("\nPeter: 'A jak se odtud vypaříš?'");
         System.out.println("Autem (vyzvednu tě u zahrady)");
-        System.out.println("Helikoptérou (přiletí pro tebe na balkon)");
+        System.out.println("Letecky (odlet helikoptérou z balkonu)");
 
-        String volbaUtek = scanner.nextLine().toLowerCase();
-        if (volbaUtek == "letecky") {
-            this.escape = "letecky";
-            System.out.println("Peter: 'Helikoptéra bude připravená na balkoně.'");
-        } else {
-            this.escape = "autem";
-            System.out.println("Peter: 'Budu čekat v autě u zahrady. Nezapomeň na psy!'");
+
+        while(true) {
+            this.escape = scanner.nextLine().toLowerCase();
+            if (escape.equals("letecky")) {
+                System.out.println("Peter: 'Helikoptéra bude připravená na balkoně.'");
+                break;
+            } else if (escape.equals("autem")) {
+                System.out.println("Peter: 'Budu čekat v autě u zahrady. Nezapomeň na psy!'");
+                break;
+            } else {
+                System.out.println("tohle nepujde");
+            }
         }
 
-        // 5. Výběr hackera
         System.out.println("\nPeter: 'Kterého hackera mám najmout?'");
         System.out.println("Gabriel (bere 20%, ale tichý přístroj)");
         System.out.println("Erik (bere 10%, ale hlučný přístroj)");
 
-        String hackerVolba = scanner.nextLine().toLowerCase();
-        if (hackerVolba == "gabriel") {
-            this.activeHacker = this.gameData.findHacker("hacker1"); // Gabriel
-            System.out.println("Peter: 'Gabriel je profík. S ním tě nikdo neuslyší.'");
-        } else {
-            this.activeHacker = this.gameData.findHacker("hacker2"); // Erik
-            System.out.println("Peter: 'Erik je levnej, ale jeho vybavení dělá pěknej randál.'");
+        boolean running = true;
+        while (running) {
+            String hackr = scanner.nextLine().toLowerCase();
+            for (Hacker h : gameData.hackers) {
+                if (hackr.equals(h.getName().toLowerCase())) {
+                    this.activeHacker = gameData.findHacker(h.getId());
+                    running = false;
+                }
+            }
+            if (running) {
+                System.out.println("Skus to znovu");
+            }
+
+
         }
+
+        if (this.activeHacker.getName().toLowerCase().equals("gabriel")) {
+            System.out.println("Peter: 'Gabriel je profík. S ním tě nikdo neuslyší.'");
+        } else if (activeHacker.getName().toLowerCase().equals("erik")) {
+            System.out.println("Peter: 'Erik je levnej, ale jeho vybavení dělá pěknej randál.'");
+        } else {
+            System.out.println("Peter: '" + activeHacker.getName() + "' Skvělá volba.'");
+        }
+
 
         System.out.println("\nPeter: 'A co je náš hlavní cíl?'");
         System.out.println("zlato: Zlaté cihly v trezoru");
         System.out.println("obraz: Velký obraz v galerii");
 
-        String lootVolba = scanner.nextLine();
-        if (lootVolba == "obraz") {
-            this.mainTarget = gameData.findItem("velkyObraz");
-        } else {
-            this.mainTarget = gameData.findItem("zlato");
+        while(true) {
+            String choice = scanner.nextLine().toLowerCase();
+            if (choice.equals("obraz")) {
+                this.mainTarget = gameData.findItem("velkyObraz");
+                System.out.println("Peter: 'Výborně obraz Pollard Willow to tedy  je'");
+                break;
+            } else if (choice.equals("zlato")) {
+                this.mainTarget = gameData.findItem("zlato");
+                System.out.println("Peter 'Zlaté cihly nejsou lehké, ale věřim že to zvládneš'");
+                break;
+            } else {
+                System.out.println("tohle nepujde");
+            }
         }
 
-        System.out.println("\nPeter: 'Všechno máš. Nůž, vysílačku i hackovací mašinu. Jdeme na to.'");
+        System.out.println("\nPeter: 'Tady máš pár věcí co se budou hodit. Nůž, vysílačku a hackovací stroj. Jdeme na to.'");
         System.out.println("--- PŘÍJEZD K VILE ---");
     }
 
@@ -242,6 +284,10 @@ public class MainGame {
         return instance;
     }
 
+
+    public Item getMainTarget() {
+        return mainTarget;
+    }
 
     public String getInfiltration() {
         return infiltration;

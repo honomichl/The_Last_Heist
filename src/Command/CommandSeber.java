@@ -43,7 +43,17 @@ public class CommandSeber extends Command {
             return "Předmět není v této místosti nebo zatím nebyl objeven.";
         }
 
-        player.getInventory().addItem(itemId);
+        if (selectedItem.isMainLoot()&&MainGame.getInstance().getMainTarget().equals(selectedItem.getName().toLowerCase())) {
+            player.getInventory().addItem(itemId);
+            MainGame.getInstance().getNoiseMeter().increaseNoise(10); //ZVUK
+            return "Výborně sehnal si hlavní loot gratuluju teď co nejrychlejš pryč, čas zachránit otce!";
+        } else if (selectedItem.isMainLoot()) {
+            return "Tvůj batoh není přizpůsoben tomuhle main targetu soustřeď se na " + MainGame.getInstance().getMainTarget().getName();
+        } else {
+            player.getInventory().addItem(itemId);
+        }
+
+
 
         if (x < player.getInventory().getFreeSlots()) {
             return "Přidal si " + itemId + " do inventare.\n" +
