@@ -2,16 +2,18 @@ package Game;
 
 import java.util.*;
 
+//TODO javadoc
+
 public class Room {
-    // jmeno pro vypis
+    /** jmeno pro vypis */
     private String name;
-    // jmeno do kodu
+    /** jmeno do kodu */
     private String id;
-    // popis
+    /** popis */
     private String description;
-    // je objeven?
+    /** je objeven? */
     private boolean hidden;
-    // list sousednich mistnosti
+    /** list sousednich mistnosti */
     private List<String> exits = new ArrayList<>();
 
 

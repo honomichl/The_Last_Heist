@@ -6,16 +6,26 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+/**
+ * Třída reprezentující kompletní datový model hry.
+ * zajišťuje načítání místností, předmětů, nepřátelů a hackerů z externích JSON zdrojů.
+ *
+ * @author Filip Honomichl
+ */
+
 public class GameData {
-
+    /** Seznam všech dostupných místností v herním světě. */
     public ArrayList<Room> rooms;
-
+    /** Seznam všech existujících předmětů. */
     public ArrayList<Item> items;
-
+    /** Seznam všech nepřátel, které lze ve hře potkat. */
     public ArrayList<Enemy> enemies;
-
+    /** Seznam všech hackerů. */
     public ArrayList<Hacker> hackers;
 
+    /**
+     * Statická metoda, která vytvoří instanci GameData načtením JSON souboru z resources.
+     */
     public static GameData loadFromResources(String resourcePath) {
 
         Gson gson = new Gson();
@@ -36,6 +46,12 @@ public class GameData {
         }
     }
 
+    /**
+     * Vyhledá předmět podle jeho ID.
+     *
+     * @param id id předmětu
+     * @return objekt Item, nebo null pokud nebyl nalezen
+     */
     public Item findItem(String id) {
         for (Item item : items) {
             if (item.getId().equals(id)) {
@@ -45,6 +61,12 @@ public class GameData {
         return null;
     }
 
+    /**
+     * Vyhledá místnost podle id.
+     *
+     * @param id Identifikátor místnosti.
+     * @return Objekt Room, nebo null pokud nebyla nalezena.
+     */
     public Room findRoom(String id) {
         for (Room r : this.rooms) {
             if (r.getId().equals(id)) {
@@ -54,6 +76,12 @@ public class GameData {
         return null;
     }
 
+    /**
+     * Vyhledá nepřítele podle jeho id.
+     *
+     * @param id Identifikátor nepřítele.
+     * @return Objekt Enemy, nebo null pokud nebyl nalezen.
+     */
     public Enemy findEnemy(String id) {
         for (Enemy e : enemies) {
             if (e.getId().equals(id)) {
@@ -63,6 +91,12 @@ public class GameData {
         return null;
     }
 
+    /**
+     * Vyhledá hackera podle jeho ID.
+     *
+     * @param id Identifikátor hackera.
+     * @return Objekt Hacker, nebo null pokud nebyl nalezen.
+     */
     public Hacker findHacker(String id) {
         for (Hacker h : hackers) {
             if (h.getId().equals(id)) {
@@ -72,6 +106,12 @@ public class GameData {
         return null;
     }
 
+    /**
+     * Získá id předmětu podle jeho názvu.
+     *
+     * @param itemName Název předmětu.
+     * @return ID předmětu jako String, nebo null pokud název neexistuje.
+     */
     public String getItemId(String itemName) {
         for (Item item : items) {
             if (item.getName().equals(itemName)) {

@@ -1,33 +1,47 @@
 package Game;
 
+/**
+ * Třída reprezentuje herní předmět (Item).
+ * Předměty mohou být buď loot s náhodnou peněžní hodnotou,
+ * nebo běžné předměty bez hodnoty.
+ *
+ * @author Filip Honomichl
+ */
+
 public class Item {
-    // jmeno pro vypis
+    /** jméno pro výpis */
     private String name;
-    // jmeno do kodu
+    /** jméno do kódu */
     private String id;
-    // popis
+    /** popis */
     private String description;
-    // pocet slotu co item zabere
+    /** počet slotů co item zabere */
     private int size;
-    // je hlavni loot?
+    /** je to hlavní loot? */
     private boolean isMainLoot;
-    // minimalni hodnota pro random v tisicich
+    /** minimalní hodnota pro random v tisících */
     private int minValue;
-    // maximalni hodnota pro random v tisicich
+    /** maximalní hodnota pro random v tisících */
     private int maxValue;
-    // random hodnota itemu z rozmezi (zaokrouhleno na tisice)
+    /** random hodnota itemu z rozmezí (zaokrouhleno na tísíce) */
     private int value;
-    // lokace itemu
+    /** lokace itemu */
     private String currentLocation;
-    // ma hodnotu?
+    /** má hodnotu? */
     private boolean loot;
-    // je ukryty?
+    /** je ukrytý? */
     private boolean hidden;
 
-
+    /**
+     * Výchozí konstruktor pro vytvoření prázdného itemu.
+     */
     public Item() {
     }
 
+    /**
+     * Konstruktor pro předmět typu "Loot" (předmět s peněžní hodnotou).
+     * Hodnota předmětu je automaticky generována v rozmezí mezi minValue a maxValue * 1000.
+     */
     public Item(String name, String id, String description, int size, boolean isMainLoot, int minValue, int maxValue, String currentLocation, boolean hidden) {
         this.name = name;
         this.id = id;
@@ -42,61 +56,54 @@ public class Item {
         this.hidden = hidden;
     }
 
+    /**
+     * Konstruktor pro běžný předmět (bez peněžní hodnoty).
+     */
     public Item(String name, String id, String description, int size, String currentLocation, boolean hidden) {
         this.name = name;
         this.id = id;
         this.description = description;
         this.size = size;
+        this.value = 0;
         this.currentLocation = currentLocation;
         this.loot = false;
         this.isMainLoot = false;
         this.hidden = hidden;
     }
 
-
-
-
-
+    /** gettery */
     public String getName() {
         return name;
     }
-
     public String getId() {
         return id;
     }
-
     public String getDescription() {
         return description;
     }
-
     public int getSize() {
         return size;
     }
-
     public boolean isMainLoot() {
         return isMainLoot;
     }
-
     public int getValue() {
         return value;
     }
-
     public String getCurrentLocation() {
         return currentLocation;
     }
-
     public boolean isLoot() {
         return loot;
     }
-
     public boolean isHidden() {
         return hidden;
     }
 
+    /** settery */
     public void setCurrentLocation(String currentLocation) {
         this.currentLocation = currentLocation;
     }
-
     public void setHidden(boolean hidden) {
         this.hidden = hidden;
     }

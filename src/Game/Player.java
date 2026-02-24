@@ -1,30 +1,41 @@
 package Game;
 
+/**
+ * Třída Player reprezentuje hlavního hrdinu hry.
+ * Uchovává informace o identitě hráče, jeho aktuální polohu
+ * a spravuje jeho inventář.
+ *
+ * @author Filip Honomichl
+ */
+
 public class Player {
-    // jmeno hrace
+    /** Jméno hráče */
     private String name = "Robin";
-    // inventar
+    /** Inventář */
     private Inventory inventory;
-    // mistnost ve ktere prave je
+    /** Místnost, ve které se hráč aktuálně nachází. */
     private Room currentRoom;
 
-
+    /**
+     * Inicializuje novou instanci hráče.
+     * Při vytvoření je automaticky udělán prázdný inventář.
+     */
     public Player() {
         this.inventory = new Inventory();
     }
 
+    /** gettery */
     public String getName() {
         return name;
     }
-
     public Inventory getInventory() {
         return inventory;
     }
-
     public Room getCurrentRoom() {
         return currentRoom;
     }
 
+    /** settery */
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
     }
