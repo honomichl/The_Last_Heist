@@ -36,7 +36,7 @@ public class Item {
         this.isMainLoot = isMainLoot;
         this.minValue = minValue;
         this.maxValue = maxValue;
-        this.value = (int)(Math.random() * (maxValue- minValue + 1) - minValue) * 1000;
+        this.value = ((int)(Math.random() * (maxValue - minValue + 1)) + minValue) * 1000;
         this.currentLocation = currentLocation;
         this.loot = true;
         this.hidden = hidden;

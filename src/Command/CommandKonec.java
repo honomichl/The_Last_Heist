@@ -9,11 +9,7 @@ public class CommandKonec extends Command {
         this.description = "Pro okamžité ukončení hry. (použití: konec)";
     }
 
-    public boolean isValid() {
-        return true;
-
-    }
-
+    // isValid porad true
 
     public String execute(String[] args) {
         Scanner scanner = new Scanner(System.in);

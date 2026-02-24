@@ -9,10 +9,7 @@ public class CommandHlasitost extends Command {
         this.description = "zobrazí procenta probuzení pana Huberta. (použití: hlasitost)";
     }
 
-    public boolean isValid() {
-        return true;
-
-    }
+    // isValid porad true
 
     public String execute(String[] args) {
         return MainGame.getInstance().getNoiseMeter().checkNoise();

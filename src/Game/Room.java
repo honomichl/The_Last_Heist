@@ -3,10 +3,15 @@ package Game;
 import java.util.*;
 
 public class Room {
+    // jmeno pro vypis
     private String name;
+    // jmeno do kodu
     private String id;
+    // popis
     private String description;
+    // je objeven?
     private boolean hidden;
+    // list sousednich mistnosti
     private List<String> exits = new ArrayList<>();
 
 
@@ -21,7 +26,6 @@ public class Room {
         this.exits = new ArrayList<>(exits);
 
     }
-
 
     public String getName() {
         return name;

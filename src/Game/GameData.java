@@ -71,4 +71,13 @@ public class GameData {
         }
         return null;
     }
+
+    public String getItemId(String itemName) {
+        for (Item item : items) {
+            if (item.getName().equals(itemName)) {
+                return item.getId();
+            }
+        }
+        return null;
+    }
 }

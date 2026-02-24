@@ -8,10 +8,7 @@ public class CommandInventar extends Command {
         this.description = "zobrazí co máš v inventáři a kolik zbývá volných míst. (použití: inventar)";
     }
 
-    public boolean isValid() {
-        return true;
-
-    }
+    // isValid porad true
 
     public String execute(String[] args) {
         return MainGame.getInstance().getPlayer().getInventory().showItems();

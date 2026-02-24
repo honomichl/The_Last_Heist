@@ -1,10 +1,15 @@
 package Game;
 
 public class Hacker {
+    // jmeno pro vypis
     private String name;
+    // jmeno do kodu
     private String id;
+    // popis
     private String description;
+    // cena hackera v procentech
     private int price;
+    // skill pro vypocitani hluku
     private int skill;
 
     public Hacker() {

@@ -22,18 +22,23 @@ public class CommandVyhod extends Command {
             return "Musíš napsat, co chceš vyhodit!";
         }
 
-        String itemId = args[0];
+        String itemName = args[0];
+        String itemId = MainGame.getInstance().getGameData().getItemId(itemName);
         Player player = MainGame.getInstance().getPlayer();
-        int x = player.getInventory().getFreeSlots();
+
+        if (itemId == null) {
+            return "Item neexistuje zkontroluj jestli si ho napsal správně.\n" +
+                "Pokud si nejsi jistý co máš v inventáři použij command 'inventar'.";
+        }
+        if (!player.getInventory().hasItem(itemId)) {
+            return "Tento item nemáš v inventáři.\n" +
+                    "Pokud si nejsi jistý co v něm máš použij command 'inventar'.";
+        }
 
         player.getInventory().removeItem(itemId);
 
-        if (x < player.getInventory().getFreeSlots()) {
-            return "Odebral si " + itemId + " z inventare.\n" +
-                    "Volná místa: " + player.getInventory().getFreeSlots();
+        return "Odebral si " + itemId + " z inventare.\n" +
+                "Volná místa: " + player.getInventory().getFreeSlots();
 
-        }
-
-        return "";
     }
 }

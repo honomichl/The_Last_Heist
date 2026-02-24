@@ -1,15 +1,17 @@
 package Game;
 
 public class Player {
+    // jmeno hrace
     private String name = "Robin";
+    // inventar
     private Inventory inventory;
+    // mistnost ve ktere prave je
     private Room currentRoom;
 
 
     public Player() {
         this.inventory = new Inventory();
     }
-
 
     public String getName() {
         return name;
@@ -23,9 +25,7 @@ public class Player {
         return currentRoom;
     }
 
-
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
     }
-
 }

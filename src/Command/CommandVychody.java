@@ -13,17 +13,14 @@ public class CommandVychody extends Command {
         this.description = "Zobrazí všechny dostupné východy. (použití: východy)";
     }
 
-    public boolean isValid() {
-        return true;
-    }
+    // isValid porad true
 
     public String execute(String[] args) {
         Player player = MainGame.getInstance().getPlayer();
-        String currentRoomName = player.getCurrentRoom().getName();
-        String text = "východy z místnosti" + currentRoomName + ": ";
+        String text = "východy z místnosti '" + player.getCurrentRoom().getName() + "': \n";
 
         for (String exit : player.getCurrentRoom().getExits()) {
-            if (exit.equals("gallerie")&&!MainGame.getInstance().isHacked()) {
+            if (exit.equals("galerie")&&!MainGame.getInstance().isHacked()) {
                 text += exit + "(zamčená) \n";
             } else if (!MainGame.getInstance().getGameData().findRoom(exit).isHidden()) {
                 text += exit + " \n";

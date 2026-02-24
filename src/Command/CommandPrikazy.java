@@ -9,16 +9,12 @@ public class CommandPrikazy extends Command {
         this.description = "zobrazi použitelné příkazy. (použití: prikazy)";
     }
 
-    public boolean isValid() {
-        return true;
-
-    }
+    // isValid porad true
 
     public String execute(String[] args) {
         String posible = "Commandy které je možné použít:\n";
         String unposible = "Commandy které není možné použít:\n";
 
-        // Projdeme všechny příkazy, které máš v MainGame uložené v mapě nebo seznamu
         for (Command c : MainGame.getInstance().getUserInterface().getCommands()) {
             String radek = ">> " + c.getName() + " = " + c.getDescription() + "\n";
 

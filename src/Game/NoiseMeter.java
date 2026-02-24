@@ -1,8 +1,9 @@
 package Game;
 
 public class NoiseMeter {
-    public int getNoiseLevel;
+    // hladina hluku
     private int noiseLevel = 0;
+    // maximalni hodnota pro hladinu hluku
     private int maxNoise;
 
 
@@ -12,10 +13,6 @@ public class NoiseMeter {
         } else {
             noiseLevel += amount;
         }
-    }
-
-    public void decreaseNoise(int amount) {
-        noiseLevel -= amount;
     }
 
     public String checkNoise() {
@@ -28,11 +25,13 @@ public class NoiseMeter {
     public boolean tooMuchNoise() {
         if (noiseLevel > maxNoise) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
+    public void decreaseNoise(int amount) {
+        noiseLevel -= amount;
+    }
 
     public void setMaxNoise(int maxNoise) {
         this.maxNoise = maxNoise;

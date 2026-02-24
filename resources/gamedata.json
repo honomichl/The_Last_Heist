@@ -288,32 +288,28 @@
       "id": "dog1",
       "type": "dog",
       "description": "Velký dlouho nekrmený dobrman, který hlídá zahradu.",
-      "currentLocation": "zahrada",
-      "usefulItem": "maso"
+      "currentLocation": "zahrada"
     },
     {
       "name": "strazce_1",
       "id": "strazceGalerie",
       "type": "guard",
       "description": "Profesionální ochranka v černém obleku, Obvykle v galerii.",
-      "currentLocation": "galerie",
-      "usefulItem": "nuz"
+      "currentLocation": "galerie"
     },
     {
       "name": "strazce_2",
       "id": "strazceKuchyne",
       "type": "guard",
       "description": "Profesionální ochranka v černém obleku, Obvykle v kuchyni.",
-      "currentLocation": "predsin",
-      "usefulItem": "nuz"
+      "currentLocation": "predsin"
     },
     {
       "name": "strazce_3",
       "id": "strazcePredsin",
       "type": "guard",
       "description": "Profesionální ochranka v černém obleku, Obvykle v předsíni.",
-      "currentLocation": "kuchyne",
-      "usefulItem": "nuz"
+      "currentLocation": "kuchyne"
     },
     {
       "name": "stary strazce",

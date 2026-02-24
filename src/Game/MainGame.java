@@ -5,18 +5,21 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * @author Filip Honomichl
+ */
+
 public class MainGame {
     // instance
     private static MainGame instance;
     // hrac
-    private Player player = new Player();
+    private final Player player = new Player();
     // noise meter
-    private NoiseMeter noiseMeter = new NoiseMeter();
+    private final NoiseMeter noiseMeter = new NoiseMeter();
     // game data
-    private GameData gameData = GameData.loadFromResources("/gamedata.json");;
+    private final GameData gameData = GameData.loadFromResources("/gamedata.json");
     // ui
-    private UserInterface userInterface = new UserInterface();
-
+    private final UserInterface userInterface = new UserInterface();
 
     // obtiznost hry (3 = nejtezsi; 1 nejlehci)
     private int difficulty; // pri nastavovani inventare,  pri nastavovani noise meteru
@@ -29,13 +32,11 @@ public class MainGame {
     // hacknul uz laptop v pracovne a zjisti pravdu?
     private boolean hacked = false;
     // uklada vsechny mistnosti
-    private Map<String, Room> allRooms = new HashMap<>();
+    private final Map<String, Room> allRooms = new HashMap<>();
     // jestli jede hlavni ciklus
     private boolean running = true;
     // main target
     private Item mainTarget;
-
-
 
 
 
@@ -46,29 +47,33 @@ public class MainGame {
         endGame();
     }
 
-//    player.getInventory().setSize(8);
-//
-//        this.difficulty = 1;
-//        this.activeHacker = this.gameData.findHacker("hacker1");
-//        this.infiltration = "letecky";
-//        this.escape = "letecky";
+    public MainGame() {
+        instance = this;
+    }
+
+    public static MainGame getInstance() {
+        return instance;
+    }
 
     public void setUp() {
-        player.getInventory().setSize(8);
         Scanner scanner = new Scanner(System.in);
-
 
         System.out.println("1 = nejlehčí, 2 = střední, 3 = těžká");
         System.out.println("Zvolte obtížnost (1-3): ");
-        this.difficulty = scanner.nextInt();
-        while (true) {
-            this.difficulty = scanner.nextInt();
-            if (difficulty == 1||difficulty == 2||difficulty == 3){
-                break;
-            } else {
-                System.out.println("skus od 1 do 3");
-            }
 
+        while (true) {
+            System.out.print("> ");
+            try {
+                this.difficulty = scanner.nextInt();
+                if (difficulty == 1||difficulty == 2||difficulty == 3){
+                    break;
+                } else {
+                    System.out.println("Zkus od 1 do 3");
+                }
+            } catch (Exception e) {
+                System.out.println("Zkus od 1 do 3");
+                scanner.nextLine();
+            }
         }
 
         scanner.nextLine();
@@ -84,6 +89,7 @@ public class MainGame {
         System.out.println("Letecky (výsadek padákem na balkon)");
 
         while(true) {
+            System.out.print("> ");
             this.infiltration = scanner.nextLine().toLowerCase();
             if (infiltration.equals("letecky")) {
                 System.out.println("Peter: 'Padákem na balkon... Odvážné, ale tiché.'");
@@ -92,7 +98,7 @@ public class MainGame {
                 System.out.println("Peter: 'Auto je jistota. Půjdeš buď oknem, nebo hlavními dveřmi.'");
                 break;
             } else {
-                System.out.println("tohle nepujde");
+                System.out.println("Zkus to znovu");
             }
         }
 
@@ -100,8 +106,8 @@ public class MainGame {
         System.out.println("Autem (vyzvednu tě u zahrady)");
         System.out.println("Letecky (odlet helikoptérou z balkonu)");
 
-
         while(true) {
+            System.out.print("> ");
             this.escape = scanner.nextLine().toLowerCase();
             if (escape.equals("letecky")) {
                 System.out.println("Peter: 'Helikoptéra bude připravená na balkoně.'");
@@ -110,7 +116,7 @@ public class MainGame {
                 System.out.println("Peter: 'Budu čekat v autě u zahrady. Nezapomeň na psy!'");
                 break;
             } else {
-                System.out.println("tohle nepujde");
+                System.out.println("Zkus to znovu");
             }
         }
 
@@ -118,36 +124,35 @@ public class MainGame {
         System.out.println("Gabriel (bere 20%, ale tichý přístroj)");
         System.out.println("Erik (bere 10%, ale hlučný přístroj)");
 
-        boolean running = true;
-        while (running) {
+        boolean run = true;
+        while (run) {
+            System.out.print("> ");
             String hackr = scanner.nextLine().toLowerCase();
             for (Hacker h : gameData.hackers) {
                 if (hackr.equals(h.getName().toLowerCase())) {
                     this.activeHacker = gameData.findHacker(h.getId());
-                    running = false;
+                    run = false;
                 }
             }
-            if (running) {
-                System.out.println("Skus to znovu");
+            if (run) {
+                System.out.println("Zkus to znovu");
             }
-
-
         }
 
-        if (this.activeHacker.getName().toLowerCase().equals("gabriel")) {
+        if (this.activeHacker.getId().equalsIgnoreCase("gabriel")) {
             System.out.println("Peter: 'Gabriel je profík. S ním tě nikdo neuslyší.'");
-        } else if (activeHacker.getName().toLowerCase().equals("erik")) {
+        } else if (activeHacker.getId().equalsIgnoreCase("erik")) {
             System.out.println("Peter: 'Erik je levnej, ale jeho vybavení dělá pěknej randál.'");
         } else {
             System.out.println("Peter: '" + activeHacker.getName() + "' Skvělá volba.'");
         }
-
 
         System.out.println("\nPeter: 'A co je náš hlavní cíl?'");
         System.out.println("zlato: Zlaté cihly v trezoru");
         System.out.println("obraz: Velký obraz v galerii");
 
         while(true) {
+            System.out.print("> ");
             String choice = scanner.nextLine().toLowerCase();
             if (choice.equals("obraz")) {
                 this.mainTarget = gameData.findItem("velkyObraz");
@@ -158,22 +163,26 @@ public class MainGame {
                 System.out.println("Peter 'Zlaté cihly nejsou lehké, ale věřim že to zvládneš'");
                 break;
             } else {
-                System.out.println("tohle nepujde");
+                System.out.println("Zkus to znovu");
             }
         }
 
-        System.out.println("\nPeter: 'Tady máš pár věcí co se budou hodit. Nůž, vysílačku a hackovací stroj. Jdeme na to.'");
-        System.out.println("--- PŘÍJEZD K VILE ---");
+        System.out.println("\nPeter: 'Tady máš pár věcí co se budou hodit. Nůž, vysílačku a hackovací stroj. Jdeme na to.'\n" +
+                "--------- PŘÍJEZD K VILE ---------\n" +
+                "začni příkazem 'prikazy'.\n");
     }
 
     public void createWorld() {
-        int noise = 0;
+        player.getInventory().setSize(8);
 
-        switch (this.difficulty) {
-            case 1: noise = 130; break;
-            case 2: noise = 100; break;
-            case 3: noise = 70; break;
-        }
+        int noise = switch (this.difficulty) {
+            case 1 -> 130;
+            case 2 -> 100;
+            case 3 -> 70;
+            default -> 0;
+        };
+
+        getNoiseMeter().setMaxNoise(noise);
 
         for (Room r : this.gameData.rooms) {
             this.allRooms.put(r.getId(), r);
@@ -187,6 +196,11 @@ public class MainGame {
             System.out.println("Error!!!");
         }
 
+        if (infiltration.equals("letecky")||escape.equals("letecky")) {
+            player.getInventory().setSize(player.getInventory().getSize() - 1);
+            System.out.println(player.getInventory().getSize());
+        }
+
         for (Item item : this.gameData.items) {
             String itemLocation = item.getCurrentLocation();
 
@@ -195,17 +209,6 @@ public class MainGame {
             }
         }
 
-        if (infiltration.equals("letecky")||escape.equals("letecky")) {
-            player.getInventory().setSize(player.getInventory().getSize() - 1); //
-        }
-
-        System.out.println(player.getInventory().showItems()); // TEST
-
-
-
-        System.out.println("Načteno místností: " + this.gameData.rooms.size());
-        System.out.println("Načteno předmětů: " + this.gameData.items.size());
-        System.out.println("Načteno hackerů: " + this.gameData.hackers.size());
     }
 
     public void gameLoop() {
@@ -213,15 +216,17 @@ public class MainGame {
         UserInterface ui = new UserInterface();
 
         while (this.running) {
-            System.out.print("\n> ");
+            System.out.print("> ");
             String input = scanner.nextLine();
 
             ui.CommandInput(input);
 
             if (noiseMeter.tooMuchNoise()) {
-                System.out.println("Pan Hubert se probudil! Jsi chycen.");
-                System.out.println("Tvá cesta zde končí.");
-                System.exit(0);
+                fail();
+            }
+
+            if (escape.equals("letecky") && isHacked() && !getGameData().findEnemy("strazcePredsin").getCurrentLocation().equals("none")) {
+                getGameData().findEnemy("strazcePredsin").setCurrentLocation("obyvaciPokoj");
             }
         }
     }
@@ -230,67 +235,82 @@ public class MainGame {
         this.running = false;
     }
 
+    public void fail() {
+        System.out.println("Byl spuštěn poplach neni šance utéct.");
+        System.out.println("Pan Hubert je vzbuzen. Jsi chycen.");
+        System.out.println("Tvá cesta zde končí.");
+        System.exit(0);
+    }
+
     public void endGame() {
         System.out.println("\n--- EPILOG ---");
-        Inventory batoh = MainGame.getInstance().getPlayer().getInventory();
-        int expensiveLayers = 700;
+        Inventory batoh = getPlayer().getInventory();
+        int expensiveLayers = 350000;
         int stolenGoods = 0;
 
         for (Item i : batoh.getItems()) {
-            stolenGoods += i.getValue();
-        }
-
-        if (stolenGoods >= expensiveLayers) {
-            System.out.println("Robin: 'Mám to! Tohle bohatství stačí na ty nejlepší právníky v zemi.'");
-            System.out.println("Díky ukradenému lootu jsi najal špičkový právní tým, který rozbil Hubertovy lži.");
-            System.out.println("Tvůj otec je po 64 letech volný a ty máš konečně důvod žít normální život.");
-            System.out.println("VÍTĚZSTVÍ: Dosáhl jsi nejlepšího možného konce.");
-        } else {
-            System.out.println("Robin: 'Sakra, nemám peníze na právníky... zbývá jen ta složka.'");
-            System.out.println("Máš v rukou pravdu, ale jediná cesta, jak ji použít, je přiznat se ke vloupání.");
-            System.out.println("Musíš si vybrat: Buď si necháš složku pro sebe a budeš volný (ale táta zůstane v base),");
-            System.out.println("nebo důkazy odevzdáš policii, očistíš tátu, ale sám půjdeš sedět za krádež.");
-            System.out.println("\nCo uděláš?");
-            System.out.println("1. Odevzdat složku policii (Očistíš tátu, ale půjdeš do vězení za vloupání)");
-            System.out.println("2. Nechat si složku a zmizet (Zůstaneš na svobodě, ale táta shnije ve vězení)");
-            Scanner scanner = new Scanner(System.in);
-            int volba = scanner.nextInt();
-            if (volba == 1) {
-                System.out.println("Rozhodl ses pro spravedlnost. Došel jsi na policii a předal jim důkazy o Hubertových podvodech.");
-                System.out.println("Soud uznal, že tvůj otec byl nevinný a okamžitě ho propustili na svobodu. Viděl jsi ho po letech plakat.");
-                System.out.println("Cena však byla vysoká – za vloupání do vily jsi dostal několik let. Tvůj otec je volný, ale ty teď sedíš za něj.");
-                System.out.println("STAV: Sebeobětování. Otec je volný, ty jsi ve vězení.");
-            } else {
-                System.out.println("Strach z vězení byl silnější. Složku jsi spálil v nejbližším koši a zmizel jsi do anonymity velkoměsta.");
-                System.out.println("Otec ve vězení dál věří v tvou nevinnu a Hubert si dál užívá svého nakradeného bohatství v klidu své vily.");
-                System.out.println("Ty jsi sice volný, ale každý večer tě pronásleduje svědomí, že jsi tátu nechal v pekle jen kvůli vlastnímu strachu.");
-                System.out.println("STAV: Hořká svoboda. Jsi volný, ale otec zůstal v žaláři.");
+            if (i.isLoot()) {
+                stolenGoods += i.getValue();
             }
         }
+        int tax = 20 + getAciveHacker().getPrice();
+        int yourCut = stolenGoods - (stolenGoods * (tax/100));
 
-    }
+        System.out.println("Zvládl si ukradnout: "+ stolenGoods + " kč");
+        System.out.println("Peter cut: " + (stolenGoods - (stolenGoods * 0.2)) + " kč (za zajišťení dopravy a pomoc se setupem)");
+        System.out.println(getAciveHacker().getName() + " cut: "+ (stolenGoods - (stolenGoods * (getAciveHacker().getPrice()/100))) + " kč (za hackování a odbornou pomoc)");
+        System.out.println("Tvůj cut: " + yourCut + " kč");
+        System.out.println("Cena drahých právníků: " + expensiveLayers + " kč");
 
+        if (yourCut >= expensiveLayers) {
+            System.out.println("Díky ukradenému lootu jsi najal špičkový právní tým, který rozbil Hubertovy lži.\n" +
+                    "Tvůj otec je po 64 letech volný a ty máš konečně důvod žít normální život.\n" +
+                    "VÍTĚZSTVÍ: Dosáhl jsi nejlepšího možného konce.");
+        } else {
+            System.out.println("Nemáš dost peněz na drahé právníky a tak tě čeká složité rozhodnutí.\n" +
+                    "Máš v rukou pravdu, ale jediná cesta, jak ji použít, je přiznat se ke vloupání.\n" +
+                    "Musíš si vybrat: Buď si necháš složku pro sebe a budeš volný (ale táta zůstane v base),\n" +
+                    "nebo důkazy odevzdáš policii, očistíš tátu, ale sám půjdeš sedět za krádež.\n" +
+                    "\nCo uděláš?\n" +
+                    "1. Odevzdat složku policii (Očistíš tátu, ale půjdeš do vězení za vloupání)\n" +
+                    "2. Nechat si složku a zmizet (Zůstaneš na svobodě, ale táta zůstane ve vězení)");
 
-    public Room findRoom(String id) {
-        return allRooms.get(id);
-    }
+            Scanner scanner = new Scanner(System.in);
 
+            while (true) {
+                System.out.print("> ");
+                try {
+                    int volba = scanner.nextInt();
+                    scanner.nextLine();
 
-    public MainGame() {
-        instance = this;
-    }
+                    if (volba == 1) {
+                        System.out.println("Rozhodl ses pro spravedlnost. Došel jsi na policii a předal jim důkazy o Hubertových podvodech.\n" +
+                                "Soud uznal, že tvůj otec byl nevinný a okamžitě ho propustili na svobodu. Viděl jsi ho po letech plakat.\n" +
+                                "Cena však byla vysoká – za vloupání do vily jsi dostal několik let. Tvůj otec je volný, ale ty teď sedíš za něj.\n" +
+                                "STAV: Sebeobětování. Otec je volný, ty jsi ve vězení.");
+                        break;
+                    } else if (volba == 2) {
+                        System.out.println("Strach z vězení byl silnější. Složku jsi spálil v nejbližším koši a zmizel jsi do anonymity velkoměsta.\n" +
+                                "Otec ve vězení dál věří v tvou nevinnu a Hubert si dál užívá svého nakradeného bohatství v klidu své vily.\n" +
+                                "Ty jsi sice volný, ale každý večer tě pronásleduje svědomí, že jsi tátu nechal v pekle jen kvůli vlastnímu strachu.\n" +
+                                "STAV: Hořká svoboda. Jsi volný, ale otec zůstal v žaláři.");
+                        break;
+                    } else {
+                        System.out.println("Neplatná volba. Máš na výběr pouze 1 nebo 2.");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Neplatná volba. Máš na výběr pouze 1 nebo 2.");
+                    scanner.nextLine();
+                }
+            }
 
-    public static MainGame getInstance() {
-        return instance;
+        }
+
     }
 
 
     public Item getMainTarget() {
         return mainTarget;
-    }
-
-    public String getInfiltration() {
-        return infiltration;
     }
 
     public UserInterface getUserInterface() {
@@ -333,7 +353,6 @@ public class MainGame {
         this.hacked = hacked;
     }
 
-    public void setDifficulty(int difficulty) {}
 
 
 }

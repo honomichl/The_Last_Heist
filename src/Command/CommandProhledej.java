@@ -9,10 +9,7 @@ public class CommandProhledej extends Command {
         this.description = "Pro prohledání mísnosti po zajímavých věcech. (použití: prohledej)";
     }
 
-    public boolean isValid() {
-        return true;
-
-    }
+    // isValid porad true
 
     public String execute(String[] args) {
         Player player = MainGame.getInstance().getPlayer();
@@ -25,7 +22,7 @@ public class CommandProhledej extends Command {
             if (item.getCurrentLocation().equals(currentRoomId)) {
                 item.setHidden(false);
                 something = true;
-                if (item.getValue()>0) {
+                if (item.getValue()!=0) {
                     text += item.getName() + " - cena: " + item.getValue() + "000 kč\n";
                 } else {
                     text += item.getName() + "\n";
@@ -34,11 +31,13 @@ public class CommandProhledej extends Command {
             }
         }
 
-        MainGame.getInstance().getNoiseMeter().increaseNoise(3); //ZVUK
+        MainGame.getInstance().getNoiseMeter().increaseNoise(3); //ZVUK prohledani mistnosti
         System.out.println("Udělal si hluk.");
 
-        if (MainGame.getInstance().getPlayer().getCurrentRoom().getId().equals("loznice")) {
+        if (MainGame.getInstance().getPlayer().getCurrentRoom().getId().equals("loznice") && MainGame.getInstance().getGameData().findRoom("trezor").isHidden()) {
+            something = true;
             MainGame.getInstance().getGameData().findRoom("trezor").setHidden(false);
+            text += "Vchod do trezoru.\n";
 
         }
 

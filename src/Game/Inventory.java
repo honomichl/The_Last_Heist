@@ -3,25 +3,27 @@ package Game;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ */
 public class Inventory {
+    // prázdné sloty v invetáři
     private int freeSlots;
+    // velikost inventáře
     private int size;
+    // itemy v inventáři
     private List<Item> items = new ArrayList<>();
 
 
 
-
-
-
     public void addItem(String itemId) {
-
         Item item = MainGame.getInstance().getGameData().findItem(itemId);
 
         if (item != null) {
-            if (this.items.size() <= this.freeSlots) {
+            if (item.getSize() <= freeSlots) {
                 this.items.add(item);
-                MainGame.getInstance().getGameData().findItem(itemId).setCurrentLocation("inventar");
-                this.freeSlots -= item.getSize();
+                item.setCurrentLocation("inventar");
+                freeSlots = freeSlots - item.getSize();
             } else {
                 System.out.println("neni dost mista");
             }
@@ -31,22 +33,13 @@ public class Inventory {
 
     }
 
-    public boolean hasItem(String itemName) {
+    public boolean hasItem(String itemId) {
         for (Item i : items) {
-            if (i.getName().equalsIgnoreCase(itemName)) {
+            if (i.getId().equals(itemId)) {
                 return true;
             }
         }
         return false;
-    }
-
-    public Item getItem(String itemName) {
-        for (Item i : items) {
-            if (i.getName().equalsIgnoreCase(itemName)) {
-                return i;
-            }
-        }
-        return null;
     }
 
     public void removeItem(String itemId) {
@@ -87,7 +80,12 @@ public class Inventory {
         return text;
     }
 
-
+    public boolean checkSpace(Item item) {
+        if (item.getSize() <= this.freeSlots) {
+            return true;
+        }
+        return false;
+    }
 
     public List<Item> getItems() {
         return items;
