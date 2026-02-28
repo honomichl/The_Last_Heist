@@ -6,14 +6,28 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Třída UserInterface představuje uživatelské rozhraní hry.
+ * Má na starosti registraci dostupných příkazů a zpracování vstupů od hráče.
+ *
+ * @author Filip Honomichl
+ */
 
 public class UserInterface{
+    /** Mapa uchovávající příkazy */
     private Map<String, Command> CommandMap = new HashMap<>();
 
+    /**
+     * Vrátí kolekci všech aktuálně registrovaných příkazů.
+     * @return kolekce commandů
+    */
     public Collection<Command> getCommands() {
         return this.CommandMap.values();
     }
 
+    /**
+     * Provádí inicializaci a registraci všech dostupných příkazů do command mapy.
+     */
     public UserInterface() {
         CommandMap.put("hackni".toLowerCase(), new CommandHackni());
         CommandMap.put("hlasitost".toLowerCase(), new CommandHlasitost());
@@ -29,6 +43,11 @@ public class UserInterface{
         CommandMap.put("vyhod".toLowerCase(), new CommandVyhod());
     }
 
+    /**
+     * Zpracuje řetězec zadaný uživatelem. Rozdělí jej na jméno příkazu a parametry,
+     * a pokud příkaz existuje, provede jej.
+     * @param line kompletní řádek textu zadaný uživatelem
+     */
     public void CommandInput(String line) {
         String[] word = line.split(" ");
         String commandName = word[0];

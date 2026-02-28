@@ -20,6 +20,7 @@ public class Hacker {
     /** skill pro vypočítání hluku */
     private int skill;
 
+
     /**
      * Výchozí konstruktor pro vytvoření prázdného hackera.
      */

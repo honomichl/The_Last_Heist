@@ -16,6 +16,7 @@ public class Player {
     /** Místnost, ve které se hráč aktuálně nachází. */
     private Room currentRoom;
 
+
     /**
      * Inicializuje novou instanci hráče.
      * Při vytvoření je automaticky udělán prázdný inventář.

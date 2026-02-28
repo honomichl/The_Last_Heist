@@ -23,6 +23,7 @@ public class GameData {
     /** Seznam všech hackerů. */
     public ArrayList<Hacker> hackers;
 
+
     /**
      * Statická metoda, která vytvoří instanci GameData načtením JSON souboru z resources.
      */
@@ -48,7 +49,6 @@ public class GameData {
 
     /**
      * Vyhledá předmět podle jeho ID.
-     *
      * @param id id předmětu
      * @return objekt Item, nebo null pokud nebyl nalezen
      */
@@ -63,7 +63,6 @@ public class GameData {
 
     /**
      * Vyhledá místnost podle id.
-     *
      * @param id Identifikátor místnosti.
      * @return Objekt Room, nebo null pokud nebyla nalezena.
      */
@@ -78,7 +77,6 @@ public class GameData {
 
     /**
      * Vyhledá nepřítele podle jeho id.
-     *
      * @param id Identifikátor nepřítele.
      * @return Objekt Enemy, nebo null pokud nebyl nalezen.
      */
@@ -93,7 +91,6 @@ public class GameData {
 
     /**
      * Vyhledá hackera podle jeho ID.
-     *
      * @param id Identifikátor hackera.
      * @return Objekt Hacker, nebo null pokud nebyl nalezen.
      */
@@ -108,7 +105,6 @@ public class GameData {
 
     /**
      * Získá id předmětu podle jeho názvu.
-     *
      * @param itemName Název předmětu.
      * @return ID předmětu jako String, nebo null pokud název neexistuje.
      */

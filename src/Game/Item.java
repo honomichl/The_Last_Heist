@@ -19,10 +19,6 @@ public class Item {
     private int size;
     /** je to hlavní loot? */
     private boolean isMainLoot;
-    /** minimalní hodnota pro random v tisících */
-    private int minValue;
-    /** maximalní hodnota pro random v tisících */
-    private int maxValue;
     /** random hodnota itemu z rozmezí (zaokrouhleno na tísíce) */
     private int value;
     /** lokace itemu */
@@ -31,6 +27,7 @@ public class Item {
     private boolean loot;
     /** je ukrytý? */
     private boolean hidden;
+
 
     /**
      * Výchozí konstruktor pro vytvoření prázdného itemu.
@@ -41,6 +38,8 @@ public class Item {
     /**
      * Konstruktor pro předmět typu "Loot" (předmět s peněžní hodnotou).
      * Hodnota předmětu je automaticky generována v rozmezí mezi minValue a maxValue * 1000.
+     * @param minValue minimalní hodnota pro random v tisících.
+     * @param maxValue maximalní hodnota pro random v tisících.
      */
     public Item(String name, String id, String description, int size, boolean isMainLoot, int minValue, int maxValue, String currentLocation, boolean hidden) {
         this.name = name;
@@ -48,8 +47,6 @@ public class Item {
         this.description = description;
         this.size = size;
         this.isMainLoot = isMainLoot;
-        this.minValue = minValue;
-        this.maxValue = maxValue;
         this.value = ((int)(Math.random() * (maxValue - minValue + 1)) + minValue) * 1000;
         this.currentLocation = currentLocation;
         this.loot = true;

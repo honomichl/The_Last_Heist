@@ -13,6 +13,7 @@ public class NoiseMeter {
     /** Maximální přípustná hodnota hluku, než dojde k prohře. */
     private int maxNoise;
 
+
     /**
      * Zvýší aktuální hladinu hluku o zadanou hodnotu.
      * Pokud se hráč nachází v místnosti s ID "loznice", hluk se zdvojnásobí.
@@ -29,7 +30,6 @@ public class NoiseMeter {
 
     /**
      * Vrátí textovou informaci o aktuálním stavu probuzení pana Huberta v procentech.
-     *
      * @return Přehledný texy s procentuálním vyjádřením hluku.
      */
     public String checkNoise() {
@@ -41,7 +41,6 @@ public class NoiseMeter {
 
     /**
      * Kontroluje, zda hladina hluku překročila maximální povolenou mez.
-     *
      * @return true pokud je noiseLevel vyšší než maxNoise, jinakfalse.
      */
     public boolean tooMuchNoise() {
@@ -53,7 +52,6 @@ public class NoiseMeter {
 
     /**
      * Sníží aktuální hladinu hluku o zadanou hodnotu.
-     *
      * @param amount Hodnota o kterou se má hluk snížit.
      */
     public void decreaseNoise(int amount) {

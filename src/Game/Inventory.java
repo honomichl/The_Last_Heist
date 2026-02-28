@@ -18,11 +18,11 @@ public class Inventory {
     /** itemy v inventáři */
     private final List<Item> items = new ArrayList<>();
 
+
     /**
      * Pokusí se přidat předmět do inventáře na základě jeho id.
      * Metoda kontroluje existenci předmětu a zda je v inventáři dostatek místa.
      * Pokud je předmět přidán, aktualizuje se jeho lokace na "inventar" a sníží se počet volných slotů.
-     *
      * @param itemId id předmětu, který má být přidán.
      */
     public void addItem(String itemId) {
@@ -46,7 +46,6 @@ public class Inventory {
      * Pokusí se odebrat předmět z inventáře na základě jeho id.
      * Metoda kontroluje existenci předmětu v inventáři.
      * Pokud je předmět odebrán, aktualizuje se jeho lokace na hráčovu current room id a zvýší se počet volných slotů.
-     *
      * @param itemId id předmětu, který má být odebrán.
      */
     public void removeItem(String itemId) {
@@ -68,7 +67,6 @@ public class Inventory {
 
     /**
      * Prověří, zda se předmět s daným id nachází v inventáři.
-     *
      * @param itemId id hledaného předmětu.
      * @return true pokud je předmět v inventáři, jinak false.
      */
@@ -83,7 +81,6 @@ public class Inventory {
 
     /**
      * Vytvoří přehledný text o předmětech v inventáři, velikosti jednotlivých předmětů a zbývajícím volným místě.
-     *
      * @return přehledný text o obsahu inventáře.
      */
     public String showItems() {
@@ -130,7 +127,6 @@ public class Inventory {
 
     /**
      * Nastavý velikost inventáře a počet volných slotů.
-     *
      * @param number nová velikost inventáře.
      */
     public void setSize(int number) {
