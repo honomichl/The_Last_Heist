@@ -62,7 +62,7 @@ public class UserInterface{
             }
 
             String vysledek = command1.execute(parameters);
-            System.out.println(vysledek + "\n");
+            System.out.println(vysledek);
 
         } else {
             System.out.println("Tenhle příkaz neznám. Pokud nevíš jaké jsou příkazy zkus příkaz 'prikazy'.");

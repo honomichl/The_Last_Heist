@@ -27,21 +27,23 @@ public class CommandSeber extends Command {
 
 
     public String execute(String[] args) {
+        boolean mainLootPickedUp = false;
         Player player = MainGame.getInstance().getPlayer();
         String currentRoomId = player.getCurrentRoom().getId();
         if (args.length < 1) {
             return "Musíš napsat, co chceš sebrat. (např. seber nuz)";
         }
 
-        String itemName = args[0];
+        String itemId = args[0];
         int freeSlots = player.getInventory().getFreeSlots();
-        String itemId = MainGame.getInstance().getGameData().getItemId(itemName);
         Item selectedItem = MainGame.getInstance().getGameData().findItem(itemId);
         Item mainTarget = MainGame.getInstance().getMainTarget();
 
         if (selectedItem == null) {
-            return "Předmět '" + itemName + "' neexistuje.";
+            return "Předmět '" + itemId + "' neexistuje.";
         }
+
+        String itemName = MainGame.getInstance().getGameData().findItem(itemId).getName();
 
         if (!selectedItem.getCurrentLocation().equals(currentRoomId) || selectedItem.isHidden()) {
             return "Předmět není v této místosti nebo zatím nebyl objeven.";
@@ -53,18 +55,17 @@ public class CommandSeber extends Command {
             } else if (!player.getInventory().checkSpace(selectedItem)) {
                 return "Nejdřív udělej místo pro hlavní loot.\n" +
                         "Velikost hlavního lootu: " + selectedItem.getSize();
-            } else if ((mainTarget.getId().equals("zlato") && currentRoomId.equals("trezor"))||(mainTarget.getId().equals("velkyObraz") && currentRoomId.equals("galerie")) && selectedItem.getId().equals(mainTarget.getId())) {
+            } else if ((mainTarget.getId().equals("zlato") && currentRoomId.equals("trezor"))||(mainTarget.getId().equals("velkyObraz") && currentRoomId.equals("galerie")) && selectedItem.getId().equals(mainTarget.getId()) && !mainLootPickedUp) {
+                mainLootPickedUp = true;
                 player.getInventory().addItem(selectedItem.getId());
                 MainGame.getInstance().getNoiseMeter().increaseNoise(10); //ZVUK sebrani main lootu
                 return "Výborně sehnal si hlavní loot gratuluju teď co nejrychlejš pryč, čas zachránit otce!";
-            } else {
-                return "Tenhle hlavní loot nelze momentálně sebrat.";
             }
         }
 
         if (player.getInventory().checkSpace(selectedItem)) {
             player.getInventory().addItem(itemId);
-            return "Přidal si " + itemId + " do inventare.\n" +
+            return "Přidal si " + itemName + " do inventare.\n" +
                     "Volná místa: " + player.getInventory().getFreeSlots();
         }
 

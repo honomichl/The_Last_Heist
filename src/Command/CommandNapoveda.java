@@ -32,7 +32,7 @@ public class CommandNapoveda extends Command {
             noise = MainGame.getInstance().getNoiseMeter().getNoiseLevel()/(MainGame.getInstance().getNoiseMeter().getMaxNoise()/100);
         }
         String escape = MainGame.getInstance().getEscape();
-        String text = hackerName + ": ";
+        String text = "Udělal jsi hluk.\n" + hackerName + ": ";
         MainGame.getInstance().getNoiseMeter().increaseNoise(6); //ZVUK
 
 
@@ -41,11 +41,11 @@ public class CommandNapoveda extends Command {
         }
 
         if (noise <= 60){
-            text += "máš prostor zajít pro hlavní loot věř mi. ";
+            text += "máš prostor zajít pro hlavní loot věř mi. \n";
         } else if (noise <= 80){
-            text += "můžeš ještě vzít pár maličkostí ale skus se uz balit. ";
+            text += "můžeš ještě vzít pár maličkostí ale skus se uz balit. \n";
         } else {
-            text += "pan Hubert uz je skoro vzhůru nic neriskuj a makej na pryč. ";
+            text += "pan Hubert uz je skoro vzhůru nic neriskuj a makej na pryč.\n ";
         }
 
         if (escape.equals("letecky")){
@@ -54,7 +54,7 @@ public class CommandNapoveda extends Command {
             text += "Nezapomeň na toho psa co tě málem kousl směrem sem, budeš mu muset vzít něco dobrýho.";
         }
 
-        return text + "\n zvysil se zvuk.";
+        return text;
 
     }
 }

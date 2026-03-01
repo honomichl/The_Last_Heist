@@ -15,15 +15,15 @@ public class CommandProhledej extends Command {
         Player player = MainGame.getInstance().getPlayer();
         String currentRoomId = player.getCurrentRoom().getId();
         boolean something = false;
-        String text = "V místnosti '" + currentRoomId + "' si našel: \n";
+        String text = "V místnosti '" + player.getCurrentRoom().getName() + "' si našel: \n";
 
 
         for (Item item : MainGame.getInstance().getGameData().items) {
             if (item.getCurrentLocation().equals(currentRoomId)) {
                 item.setHidden(false);
                 something = true;
-                if (item.getValue()!=0) {
-                    text += item.getName() + " - cena: " + item.getValue() + "000 kč\n";
+                if (item.isLoot()) {
+                    text += item.getName() + " - cena: " + item.getValue() + " kč\n";
                 } else {
                     text += item.getName() + "\n";
                 }
@@ -44,7 +44,7 @@ public class CommandProhledej extends Command {
         if (something) {
             return text;
         } else {
-            return "Místnost '" + currentRoomId + "' je prazndná.";
+            return "Místnost '" + player.getCurrentRoom().getName() + "' je prazndná.";
         }
 
     }

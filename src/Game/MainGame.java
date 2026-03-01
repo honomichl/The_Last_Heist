@@ -71,8 +71,15 @@ public class MainGame {
     public void setUp() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("1 = nejlehčí, 2 = střední, 3 = těžká");
-        System.out.println("Zvolte obtížnost (1-3): ");
+        System.out.println("""
+                Vítej ve hře The Last Heist za chvíli se vtělíš do postavi Robina lupiče.
+                Ještě předtím je potřeba aby sis vybral obtížnost hry pokud jsi tu poprvé doporučuji 1 maximálně 2.
+                při psaní do konzole vždy piš bez háček, čárek a mezer!
+                Místo mezery napiš 2 slova spojené a to druhé napiš s velkým písmenem.
+                Hodně štěstí!!!
+                
+                1 = nejlehčí, 2 = střední, 3 = těžká
+                Zvolte obtížnost (1-3):""");
 
         while (true) {
             System.out.print("> ");
@@ -92,6 +99,7 @@ public class MainGame {
         scanner.nextLine();
 
         System.out.println("""
+                
                 --- PLÁNOVACÍ MÍSTNOST ---
                 Sedíš v místnosti se svým starým parťákem Peterem. Ten se v minulém heistu zranil,
                 takže ti tentokrát bude krýt záda jen na dálku a pomůže s přípravou.
@@ -142,8 +150,8 @@ public class MainGame {
         System.out.println("""
                 
                 Peter: 'Kterého hackera mám najmout?'
-                Gabriel (bere 20%, ale tichý přístroj)
-                Erik (bere 10%, ale hlučný přístroj)""");
+                Gabriel (bere si 20%, ale tiché hackování)
+                Erik (bere si 10%, ale hlučné hackování)""");
         boolean run = true;
         while (run) {
             System.out.print("> ");
@@ -160,7 +168,7 @@ public class MainGame {
         }
 
         if (this.activeHacker.getId().equalsIgnoreCase("gabriel")) {
-            System.out.println("Peter: 'Gabriel je profík. S ním tě nikdo neuslyší.'");
+            System.out.println("Peter: 'Gabriel je profík. S ním tě sotva neuslyší.'");
         } else if (activeHacker.getId().equalsIgnoreCase("erik")) {
             System.out.println("Peter: 'Erik je levnej, ale jeho vybavení dělá pěknej randál.'");
         } else {
@@ -170,14 +178,14 @@ public class MainGame {
         System.out.println("""
                 
                 Peter: 'A co je náš hlavní cíl?'
-                zlato: Zlaté cihly v trezoru\
+                zlato: Zlaté cihly v trezoru
                 obraz: Velký obraz v galerii""");
         while (true) {
             System.out.print("> ");
             String choice = scanner.nextLine().toLowerCase();
             if (choice.equals("obraz")) {
                 this.mainTarget = gameData.findItem("velkyObraz");
-                System.out.println("Peter: 'Výborně obraz Pollard Willow to tedy  je'");
+                System.out.println("Peter: 'Výborně obraz Pollard Willow to tedy je'");
                 break;
             } else if (choice.equals("zlato")) {
                 this.mainTarget = gameData.findItem("zlato");
@@ -191,9 +199,11 @@ public class MainGame {
         System.out.println("""
                 
                 Peter: 'Tady máš pár věcí co se budou hodit. Nůž, vysílačku a hackovací stroj. Jdeme na to.'
+                
+                
+               
                 --------- PŘÍJEZD K VILE ---------
-                začni příkazem 'prikazy'.
-                """);
+                začni příkazem 'prikazy'.""");
     }
 
     /**
@@ -202,12 +212,12 @@ public class MainGame {
      * a přidá předměty do inventáře.
      */
     public void createWorld() {
-        player.getInventory().setSize(8);
+        player.getInventory().setSize(9);
 
         int noise = switch (this.difficulty) {
-            case 1 -> 130;
+            case 1 -> 120;
             case 2 -> 100;
-            case 3 -> 70;
+            case 3 -> 80;
             default -> 0;
         };
 
@@ -227,7 +237,6 @@ public class MainGame {
 
         if (infiltration.equals("letecky") || escape.equals("letecky")) {
             player.getInventory().setSize(player.getInventory().getSize() - 1);
-            System.out.println(player.getInventory().getSize());
         }
 
         for (Item item : this.gameData.items) {
@@ -249,6 +258,7 @@ public class MainGame {
         UserInterface ui = new UserInterface();
 
         while (this.running) {
+            System.out.println("\n\nCo chceš udělat?");
             System.out.print("> ");
             String input = scanner.nextLine();
 
@@ -289,7 +299,7 @@ public class MainGame {
     public void endGame() {
         System.out.println("\n--- EPILOG ---");
         Inventory batoh = getPlayer().getInventory();
-        int expensiveLayers = 350000;
+        int expensiveLawyers = 580000;
         int stolenGoods = 0;
 
         for (Item i : batoh.getItems()) {
@@ -297,16 +307,20 @@ public class MainGame {
                 stolenGoods += i.getValue();
             }
         }
-        int tax = 20 + getAciveHacker().getPrice();
-        int yourCut = stolenGoods - (stolenGoods * (tax / 100));
+        double peterRate = 0.20;
+        double hackerRate = getAciveHacker().getPrice() / 100.0;
 
-        System.out.println("Zvládl si ukradnout: " + stolenGoods + " kč");
-        System.out.println("Peter cut: " + (stolenGoods - (stolenGoods * 0.2)) + " kč (za zajišťení dopravy a pomoc se setupem)");
-        System.out.println(getAciveHacker().getName() + " cut: " + (stolenGoods - (stolenGoods * (getAciveHacker().getPrice() / 100))) + " kč (za hackování a odbornou pomoc)");
-        System.out.println("Tvůj cut: " + yourCut + " kč");
-        System.out.println("Cena drahých právníků: " + expensiveLayers + " kč");
+        int peterCut = (int) (stolenGoods * peterRate);
+        int hackerCut = (int) (stolenGoods * hackerRate);
+        int yourCut = stolenGoods - peterCut - hackerCut;
 
-        if (yourCut >= expensiveLayers) {
+        System.out.println("Zvládl jsi ukrást: " + stolenGoods + " Kč");
+        System.out.println("Peterův podíl (20%): " + peterCut + " Kč (za dopravu a setup)");
+        System.out.println(getAciveHacker().getName() + " podíl (" + getAciveHacker().getPrice() + "%): " + hackerCut + " Kč (za hackování)");
+        System.out.println("Tvůj čistý podíl: " + yourCut + " Kč");
+        System.out.println("Cena drahých právníků: " + expensiveLawyers + " Kč");
+
+        if (yourCut >= expensiveLawyers) {
             System.out.println("""
                     Díky ukradenému lootu jsi najal špičkový právní tým, který rozbil Hubertovy lži.
                     Tvůj otec je po 64 letech volný a ty máš konečně důvod žít normální život.

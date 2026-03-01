@@ -1,7 +1,8 @@
-import Game.GameData;
 import Game.MainGame;
 
 /**
+ * Třída slouží pouze pro spuštění hry.
+ *
  * @author Filip Honomichl
  */
 

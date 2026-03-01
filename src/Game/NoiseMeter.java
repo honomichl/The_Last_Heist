@@ -36,7 +36,7 @@ public class NoiseMeter {
         if (noiseLevel == 0) {
             return "Pan Hubert je zbuzen na 0%.";
         }
-        return "Pan Hubert je zbuzen na "+ noiseLevel/(maxNoise/100) +"%.";
+        return "Pan Hubert je zbuzen na "+ (noiseLevel*100)/maxNoise +"%.";
     }
 
     /**

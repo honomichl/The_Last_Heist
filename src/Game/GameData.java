@@ -102,18 +102,4 @@ public class GameData {
         }
         return null;
     }
-
-    /**
-     * Získá id předmětu podle jeho názvu.
-     * @param itemName Název předmětu.
-     * @return ID předmětu jako String, nebo null pokud název neexistuje.
-     */
-    public String getItemId(String itemName) {
-        for (Item item : items) {
-            if (item.getName().equals(itemName)) {
-                return item.getId();
-            }
-        }
-        return null;
-    }
 }

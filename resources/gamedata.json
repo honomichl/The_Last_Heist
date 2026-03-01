@@ -85,6 +85,10 @@
       "id": "nuz",
       "description": "Tvůj věrný společník pro tichou likvidaci strážců.",
       "size": 1,
+      "mainLoot": false,
+      "loot": false,
+      "minValue": 0,
+      "maxValue": 0,
       "currentLocation": "inventory",
       "hidden": false
     },
@@ -93,6 +97,10 @@
       "id": "vysilacka",
       "description": "Umožňuje spojení s Hackerem. Je dost hlasitá.",
       "size": 1,
+      "mainLoot": false,
+      "loot": false,
+      "minValue": 0,
+      "maxValue": 0,
       "currentLocation": "inventory",
       "hidden": false
     },
@@ -101,6 +109,10 @@
       "id": "hackovaciStroj",
       "description": "Zařízení potřebné k odemčení zabezpečení vily.",
       "size": 1,
+      "mainLoot": false,
+      "loot": false,
+      "minValue": 0,
+      "maxValue": 0,
       "currentLocation": "inventory",
       "hidden": false
     },
@@ -109,6 +121,10 @@
       "id": "maso",
       "description": "Flákota masa z kuchyně. Ideální pro psy.",
       "size": 2,
+      "mainLoot": false,
+      "loot": false,
+      "minValue": 0,
+      "maxValue": 0,
       "currentLocation": "kuchyne",
       "hidden": true
     },
@@ -117,18 +133,20 @@
       "id": "slozka",
       "description": "Důkaz o nevině tvého otce. Nejcennější věc ve vile.",
       "size": 1,
+      "mainLoot": false,
+      "loot": false,
+      "minValue": 0,
+      "maxValue": 0,
       "currentLocation": "",
       "hidden": false
     },
-
-
-
     {
       "name": "zlatá cihla",
       "id": "zlataCihla",
       "description": "Menší zlatá cihla nalezená v pracovně.",
       "size": 1,
-      "isMainLoot": false,
+      "mainLoot": false,
+      "loot": true,
       "minValue": 20,
       "maxValue": 90,
       "currentLocation": "pracovna",
@@ -139,7 +157,8 @@
       "id": "bankovky",
       "description": "Balík hotovosti nalezený v předsíni.",
       "size": 1,
-      "isMainLoot": false,
+      "mainLoot": false,
+      "loot": true,
       "minValue": 30,
       "maxValue": 50,
       "currentLocation": "predsin",
@@ -150,7 +169,8 @@
       "id": "prsten",
       "description": "Drahý šperk z obývacího pokoje.",
       "size": 1,
-      "isMainLoot": false,
+      "mainLoot": false,
+      "loot": true,
       "minValue": 30,
       "maxValue": 70,
       "currentLocation": "obyvaciPokoj",
@@ -161,18 +181,20 @@
       "id": "retizek",
       "description": "Drahý šperk z jídelny.",
       "size": 1,
-      "isMainLoot": false,
+      "mainLoot": false,
+      "loot": true,
       "minValue": 40,
       "maxValue": 80,
       "currentLocation": "jidelna",
       "hidden": true
     },
     {
-      "name": "zlatéPříbory",
+      "name": "zlaté Příbory",
       "id": "zlatePribory",
       "description": "Zlaté příbory z kuchyně.",
       "size": 1,
-      "isMainLoot": false,
+      "mainLoot": false,
+      "loot": true,
       "minValue": 10,
       "maxValue": 30,
       "currentLocation": "kuchyne",
@@ -180,10 +202,11 @@
     },
     {
       "name": "hodinky Rolex",
-      "id": "hodinky1",
+      "id": "hodinkyRolex",
       "description": "Luxusní hodinky z ložnice pana Huberta.",
       "size": 1,
-      "isMainLoot": false,
+      "mainLoot": false,
+      "loot": true,
       "minValue": 40,
       "maxValue": 90,
       "currentLocation": "loznice",
@@ -191,96 +214,102 @@
     },
     {
       "name": "hodinky Omega",
-      "id": "hodinky2",
+      "id": "hodinkyOmega",
       "description": "Luxusní hodinky z ložnice pana Huberta.",
       "size": 1,
-      "isMainLoot": false,
+      "mainLoot": false,
+      "loot": true,
       "minValue": 30,
       "maxValue": 80,
       "currentLocation": "loznice",
       "hidden": true
     },
     {
-      "name": "malý obraz Kamenná Cesta",
+      "name": "malý obraz 1",
       "id": "malyObraz1",
       "description": "Menší umělecké dílo z galerie.",
       "size": 1,
-      "isMainLoot": false,
+      "mainLoot": false,
+      "loot": true,
       "minValue": 10,
       "maxValue": 40,
       "currentLocation": "galerie",
       "hidden": false
     },
     {
-      "name": "malý obraz Dřevěný Můstek",
+      "name": "malý obraz 2",
       "id": "malyObraz2",
       "description": "Menší umělecké dílo z galerie.",
       "size": 1,
-      "isMainLoot": false,
+      "mainLoot": false,
+      "loot": true,
       "minValue": 10,
       "maxValue": 40,
       "currentLocation": "galerie",
       "hidden": false
     },
     {
-      "name": "malý obraz Bílý Dům",
+      "name": "malý obraz 3",
       "id": "malyObraz3",
       "description": "Menší umělecké dílo z galerie.",
       "size": 1,
-      "isMainLoot": false,
+      "mainLoot": false,
+      "loot": true,
       "minValue": 20,
       "maxValue": 50,
       "currentLocation": "galerie",
       "hidden": false
     },
     {
-      "name": "malý obraz Divoká Řeka",
+      "name": "malý obraz 4",
       "id": "malyObraz4",
       "description": "Menší umělecké dílo z galerie.",
       "size": 1,
-      "isMainLoot": false,
+      "mainLoot": false,
+      "loot": true,
       "minValue": 10,
       "maxValue": 40,
       "currentLocation": "galerie",
       "hidden": false
     },
     {
-      "name": "malý obraz Prudký Sráz",
+      "name": "malý obraz 5",
       "id": "malyObraz5",
       "description": "Menší umělecké dílo z galerie.",
       "size": 1,
-      "isMainLoot": false,
+      "mainLoot": false,
+      "loot": true,
       "minValue": 10,
       "maxValue": 40,
       "currentLocation": "galerie",
       "hidden": false
     },
-
-
-
     {
       "name": "zlato",
       "id": "zlato",
       "description": "Těžké zlaté cihly z trezoru. Hlavní loot.",
       "size": 3,
-      "isMainLoot": true,
-      "minValue": 640,
-      "maxValue": 960,
+      "mainLoot": true,
+      "loot": true,
+      "minValue": 580,
+      "maxValue": 860,
       "currentLocation": "trezor",
       "hidden": false
     },
     {
-      "name": "velkýObrazPollardWillow",
+      "name": "velký obraz",
       "id": "velkyObraz",
       "description": "Mistrovské dílo z galerie. Hlavní loot.",
       "size": 3,
-      "isMainLoot": true,
+      "mainLoot": true,
+      "loot": true,
       "minValue": 520,
-      "maxValue": 710,
+      "maxValue": 760,
       "currentLocation": "galerie",
       "hidden": false
     }
   ],
+
 
   "enemies": [
     {
@@ -291,28 +320,28 @@
       "currentLocation": "zahrada"
     },
     {
-      "name": "strazce_1",
+      "name": "strážce Hugo",
       "id": "strazceGalerie",
       "type": "guard",
       "description": "Profesionální ochranka v černém obleku, Obvykle v galerii.",
       "currentLocation": "galerie"
     },
     {
-      "name": "strazce_2",
+      "name": "strážce Pepa",
       "id": "strazceKuchyne",
       "type": "guard",
       "description": "Profesionální ochranka v černém obleku, Obvykle v kuchyni.",
       "currentLocation": "predsin"
     },
     {
-      "name": "strazce_3",
+      "name": "strážce Dan",
       "id": "strazcePredsin",
       "type": "guard",
       "description": "Profesionální ochranka v černém obleku, Obvykle v předsíni.",
       "currentLocation": "kuchyne"
     },
     {
-      "name": "stary strazce",
+      "name": "starý strážce",
       "id": "staryStrazce",
       "type": "oldGuard",
       "description": "Vypadá, že tu pracuje desítky let. Má v ruce zbraň.",
@@ -322,14 +351,14 @@
   "hackers": [
     {
       "name": "Gabriel",
-      "id": "hacker1",
+      "id": "gabriel",
       "description": "Zkušený hacker, dává lepší rady a je potišší.",
       "price": 20,
       "skill": 5
     },
     {
       "name": "Erik",
-      "id": "hacker2",
+      "id": "erik",
       "description": "Levnější, ale jeho přístroj dělá větší hluk.",
       "price": 10,
       "skill": 2

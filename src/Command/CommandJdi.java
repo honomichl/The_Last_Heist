@@ -23,29 +23,32 @@ public class CommandJdi extends Command {
             return "Kam chceš jít? Pokud nevíš kam můžeš použij příkaz: Vychody";
         }
 
-        String roomName = parameters[0];
+        String roomId = parameters[0];
         Player player = MainGame.getInstance().getPlayer();
         Room currentRoom = player.getCurrentRoom();
         List<String> validExits = currentRoom.getExits();
         boolean valid = false;
 
         // zjisti jestli zadana mistnost je vedle current mistnosti
-        for (String exitName : validExits) {
-            if (exitName.equals(roomName)) {
+        for (String exitId : validExits) {
+            if (exitId.equals(roomId)) {
                 valid = true;
                 break;
             }
         }
+        if (!valid) {
+            return  "Nelze jít do '" + roomId + "' odtud. Pokud nevíš kam můžeš použij příkaz: 'Vychody'.";
+        }
 
-        if (roomName.equals("galerie")&&!MainGame.getInstance().isHacked()) {
+        if (roomId.equals("galerie")&&!MainGame.getInstance().isHacked()) {
             return "Galerie je zamčená skus se vrátit po hacknutí notebooku.";
         }
 
-        if (roomName.equals("trezor")&&!MainGame.getInstance().getGameData().findRoom("trezor").isHidden()) {
+        if (roomId.equals("trezor")&&MainGame.getInstance().getGameData().findRoom("trezor").isHidden()) {
             return "Trezor je potřeba nejdřív najít pomocí příkazu: 'prohledej'.";
         }
 
-        if (roomName.equals("zahrada")&&valid) {
+        if (roomId.equals("zahrada")) {
             if(player.getInventory().hasItem("maso")) {
                 MainGame.getInstance().getGameData().findEnemy("dog1").removeEnemy();
                 player.getInventory().removeItem("maso");
@@ -53,24 +56,29 @@ public class CommandJdi extends Command {
             } else if (MainGame.getInstance().getGameData().findEnemy("dog1").getCurrentLocation().equals("zahrada")) {
                 MainGame.getInstance().getNoiseMeter().increaseNoise(8); //ZVUK zahnani psem
                 return "Pes tě vyhnal zpátky dovnitř a způsobil dost hluku.";
-            } else if (currentRoom.getId().equals("kuchyne")){
+            } else if (currentRoom.getId().equals("jidelna")){
                 MainGame.getInstance().getNoiseMeter().increaseNoise(4); //ZVUK pruchod oknem
                 System.out.println("Jít oknem není ta nejpotišejší věc");
             }
         }
 
-        if (roomName.equals("kuchyne")&&currentRoom.getId().equals("zahrada")) {
+        if (currentRoom.getId().equals("zahrada")&&roomId.equals("jidelna")) {
             MainGame.getInstance().getNoiseMeter().increaseNoise(4); //ZVUK pruchod oknem
             System.out.println("Jít oknem není ta nejpotišejší věc");
         }
 
 
-        if (!valid) {
-            return  "Nelze jít do '" + roomName + "' odtud. Pokud nevíš kam můžeš použij příkaz: 'Vychody'.";
+
+        if (roomId.equals("kuchyne")&&currentRoom.getId().equals("zahrada")) {
+            MainGame.getInstance().getNoiseMeter().increaseNoise(4); //ZVUK pruchod oknem
+            System.out.println("Jít oknem není ta nejpotišejší věc");
         }
 
 
-        Room nextRoom = MainGame.getInstance().getAllRooms().get(roomName);
+
+
+
+        Room nextRoom = MainGame.getInstance().getAllRooms().get(roomId);
 
 
         // logika interakci s enemy (pes uz vyresen)
@@ -81,27 +89,30 @@ public class CommandJdi extends Command {
 
                 // se strazci
                 if (e.getCurrentLocation().equals(nextRoom.getId()) && e.getType().equals("guard")) {
-                    System.out.println("!!! Překvapil tě strážce " + e.getName() + " !!!");
+                    System.out.println("!!! Překvapil tě strážce " + e.getName() + " !!\n");
 
                     if (!player.getInventory().hasItem("nuz")) {
                         System.out.println("Bez nože nejsi schopen boje strážce tě hravě přemůže a svolá poplach.");
                         MainGame.getInstance().fail();
+                    } else {
+                        System.out.println("Skočil jsi na něj se svým nožem jestě že sis ho vzal.");
+                        System.out.println("Napřáhneš se na něj a snažíš se ho zranit.");
                     }
 
                     double chance = switch (MainGame.getInstance().getDifficulty()) {
                         case 1 -> 0.8;
                         case 2 -> 0.7;
                         case 3 -> 0.6;
-                        default -> 1.0;
+                        default -> 0;
                     };
 
                     while (e.getCurrentLocation().equals(nextRoom.getId())) {
 
                         if (Math.random() < chance) {
-                            System.out.println("Vyhrál jsi! Strážce je mimo hru.");
+                            System.out.println("Strefil ses! Strážce je mimo hru.");
                             e.removeEnemy();
                         } else {
-                            System.out.println("Strážce tě udeřil! Zkoušíš to znovu...");
+                            System.out.println("Strážce se vyhnul a udeřil tě nazpět! Zkoušíš to znovu...");
                             MainGame.getInstance().getNoiseMeter().increaseNoise(5); // ZVUK boj
                         }
                     }
@@ -113,12 +124,12 @@ public class CommandJdi extends Command {
                     System.out.println("V posledni vteřině před vchodem do ložnice si všimneš starého strážce, který na tebe míří pistolí.\n" +
                                 "Zadrž, mladíku! Než tě pustím dál, musíš mi odpovědět na dvě otázky. Stačí ANO nebo NE.\n" +
                                 "Míří na tebe pistolí nesmíš riskovat. Máš štěstí, že je zmatený.\n" +
-                                "\nOdpovidej jen ano / ne a dej pozor ať se nepřepíšeš mohlo bz tě to stát život!");
+                                "Odpovidej jen ano/ne bez mezer a dej pozor ať se nepřepíšeš mohlo by tě to stát život!");
 
                     java.util.Scanner sc = new java.util.Scanner(System.in);
 
                     System.out.println("\nOtázka první: Je pravda, že kód Enigma, používaný za druhé světové války, rozluštil tým vedený Alanem Turingem?");
-                    System.out.println("> ");
+                    System.out.print("> ");
                     String odpoved1 = sc.nextLine().toLowerCase();
 
                     if (!odpoved1.equals("ano")) {
@@ -129,11 +140,11 @@ public class CommandJdi extends Command {
                     }
 
                     System.out.println("\nOtázka druhá: Je pravda, že tučňáci žijí ve volné přírodě na severním pólu?");
-                    System.out.println("> ");
+                    System.out.print("> ");
                     String odpoved2 = sc.nextLine().toLowerCase();
 
                     if (!odpoved2.equals("ne")) {
-                        System.out.println("Strážce si odfrkne: Špatně! O vesmíAni nevíš, kde žijí ptáci. Poplach!!!!");
+                        System.out.println("Strážce si odfrkne: Špatně! Ani nevíš, kde žijí ptáci. Poplach!!!!");
                         MainGame.getInstance().fail();
                     } else {
                         System.out.println("\n'Správně... vidím, že máš za ušima. Můžeš jít, ale pohybuj se potichu spí tam můj šéf.'");
@@ -143,7 +154,7 @@ public class CommandJdi extends Command {
 
             }
         }
-        return "Přesunul si se do: " + nextRoom.getName() + "\n" + nextRoom.getDescription();
+        return "Přesunul si se do: " + nextRoom.getName();
 
     }
 

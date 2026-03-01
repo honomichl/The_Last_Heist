@@ -6,7 +6,7 @@ public class CommandVyhod extends Command {
 
     public CommandVyhod() {
         this.name = "vyhod";
-        this.description = "Pro vyhození věcí. (použití: vyhod [věc])";
+        this.description = "Pro vyhození věcí. (použití: vyhod [vec])";
     }
 
     public boolean isValid() {
@@ -19,14 +19,13 @@ public class CommandVyhod extends Command {
 
     public String execute(String[] args) {
         if (args.length < 1) {
-            return "Musíš napsat, co chceš vyhodit!";
+            return "Musíš napsat, co chceš vyhodit! (např. vyhod hackovaciStroj)";
         }
 
-        String itemName = args[0];
-        String itemId = MainGame.getInstance().getGameData().getItemId(itemName);
+        String itemId = args[0];
         Player player = MainGame.getInstance().getPlayer();
 
-        if (itemId == null) {
+        if (MainGame.getInstance().getGameData().findItem(itemId) == null) {
             return "Item neexistuje zkontroluj jestli si ho napsal správně.\n" +
                 "Pokud si nejsi jistý co máš v inventáři použij command 'inventar'.";
         }
@@ -37,7 +36,7 @@ public class CommandVyhod extends Command {
 
         player.getInventory().removeItem(itemId);
 
-        return "Odebral si " + itemId + " z inventare.\n" +
+        return "Odebral si " + MainGame.getInstance().getGameData().findItem(itemId).getName() + " z inventare.\n" +
                 "Volná místa: " + player.getInventory().getFreeSlots();
 
     }

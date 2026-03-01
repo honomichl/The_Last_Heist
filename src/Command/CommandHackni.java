@@ -13,7 +13,7 @@ public class CommandHackni extends Command {
         Player player = MainGame.getInstance().getPlayer();
         String currentRoomId = player.getCurrentRoom().getId();
 
-        if (currentRoomId.equals("pracovna")&&player.getInventory().hasItem("hackovaciPristroj")) {
+        if (currentRoomId.equals("pracovna")&&player.getInventory().hasItem("hackovaciStroj")) {
             return true;
         }
         return false;
@@ -26,13 +26,13 @@ public class CommandHackni extends Command {
 
         if (isValid()) {
             MainGame.getInstance().setHacked(true);
-            player.getInventory().removeItem("hackovaciPristroj");
-            MainGame.getInstance().getGameData().findItem("hackovaciPristroj").setCurrentLocation("");
+            player.getInventory().removeItem("hackovaciStroj");
+            MainGame.getInstance().getGameData().findItem("hackovaciStroj").setCurrentLocation("pracovna");
             player.getInventory().addItem("slozka");
             // hluk z hackovani
-            MainGame.getInstance().getNoiseMeter().increaseNoise(40/MainGame.getInstance().getAciveHacker().getSkill());
+            MainGame.getInstance().getNoiseMeter().increaseNoise(50/MainGame.getInstance().getAciveHacker().getSkill());
             // hluk ze zjisteni pravdy
-            MainGame.getInstance().getNoiseMeter().decreaseNoise(30);
+            MainGame.getInstance().getNoiseMeter().increaseNoise(20);
             return "Hacker: 'Jsem tam! Teď musím běžet skripty, chvíli počkej.'\n" +
                     "Zatímco čekáš, tvůj zrak zavadí o složku se stejným logem,\n" +
                     "které měla firma, co zničila tvého tátu. Otevřeš ji...\n" +
@@ -43,11 +43,11 @@ public class CommandHackni extends Command {
                     "V návalu vzteku jsi prudce vstal a shodil lampu ze stolu! (Hluk se zvýšil)";
 
         } else if (currentRoomId.equals("pracovna")) {
-            return "Pro využití tohohle commandu je potřeba mít u sebe hackovací přístroj." +
+            return "Pro využití tohohle commandu je potřeba mít u sebe hackovací přístroj.\n" +
                     "Pokud nevíš jaké commandy můžeš použít využij commandu 'prikazy'.";
 
         } else {
-            return "Pro využití tohohle commandu je potřeba nejdříve najít notebook a mít u sebe hackovací přístroj. " +
+            return "Pro využití tohohle commandu je potřeba nejdříve najít notebook a mít u sebe hackovací přístroj.\n" +
                     "Pokud nevíš jaké commandy můžeš použít využij commandu 'prikazy'.";
 
         }

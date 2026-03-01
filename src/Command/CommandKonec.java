@@ -14,7 +14,7 @@ public class CommandKonec extends Command {
     public String execute(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Jsi si jist ze chceš vypnout hru?");
+        System.out.println("Jsi si jist ze chceš vypnout hru?(ano/ne)");
         System.out.print("> ");
         String input = scanner.nextLine().toLowerCase();
 

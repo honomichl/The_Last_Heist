@@ -12,7 +12,7 @@ public class CommandPrikazy extends Command {
     // isValid porad true
 
     public String execute(String[] args) {
-        String posible = "Commandy které je možné použít:\n";
+        String posible = "Commandy které je teď♦ možné použít:\n";
         String unposible = "Commandy které není možné použít:\n";
 
         for (Command c : MainGame.getInstance().getUserInterface().getCommands()) {

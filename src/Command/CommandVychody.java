@@ -10,7 +10,7 @@ public class CommandVychody extends Command {
 
     public CommandVychody() {
         this.name = "vychody";
-        this.description = "Zobrazí všechny dostupné východy. (použití: východy)";
+        this.description = "Zobrazí lokaci a všechny dostupné východy. (použití: východy)";
     }
 
     // isValid porad true
@@ -21,9 +21,9 @@ public class CommandVychody extends Command {
 
         for (String exit : player.getCurrentRoom().getExits()) {
             if (exit.equals("galerie")&&!MainGame.getInstance().isHacked()) {
-                text += exit + "(zamčená) \n";
+                text += MainGame.getInstance().getGameData().findRoom(exit).getName() + "(zamčená) \n";
             } else if (!MainGame.getInstance().getGameData().findRoom(exit).isHidden()) {
-                text += exit + " \n";
+                text += MainGame.getInstance().getGameData().findRoom(exit).getName() + " \n";
             }
         }
 
