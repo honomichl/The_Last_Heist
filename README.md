@@ -25,10 +25,14 @@ Hra se ovládá zadáváním textových příkazů do konzole. Mezi základní d
 * **Skryté předměty:** Některé předměty nejsou na první pohled vidět a hráč je musí v místnostech aktivně hledat.
 
 ## Jak hru spustit
-1. **Požadavky:** Nainstalované Java Development Kit (JDK) verze 17 nebo novější.
-2. **Klonování:** Stáhněte si tento repozitář nebo jej naklonujte pomocí příkazu git clone.
-3. **Import:** Otevřete projekt ve vašem oblíbeném IDE (doporučeno IntelliJ IDEA).
-4. **Spuštění:** Spusťte hlavní třídu `MainGame` (případně `Main`), která inicializuje herní svět a spustí uživatelské rozhraní.
+### 1. Spuštění pomocí připraveného .jar souboru (Doporučeno)
+Pro spuštění hry nemusíte otevírat IDE. Stačí mít nainstalované **JRE/JDK verze 21** nebo novější.
+
+1. Stáhněte soubor The_Last_Heist.jar.
+2. Otevřete terminál (PowerShell / Příkazový řádek) ve složce se souborem.
+3. Spusťte hru příkazem:
+   ```bash
+   java -jar The_Last_Heist_Clone.jar
 
 ## Použité technologie a knihovny
 * **Java SDK 17+**: Základní vývojové prostředí.
